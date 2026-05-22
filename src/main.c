@@ -6,11 +6,17 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 10:25:28 by joapedro          #+#    #+#             */
-/*   Updated: 2026/05/22 11:37:17 by joapedro         ###   ########.fr       */
+/*   Updated: 2026/05/22 13:49:40 by grui-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	rendering_loop(t_map *map)
+{
+	render_minimap(map);
+	mlx_put_image_to_window(map->data.mlx, map->data.mlx_win, map->data.img.mlx_img, 0, 0);
+}
 
 int	main(int ac, char **av)
 {
@@ -37,7 +43,7 @@ int	main(int ac, char **av)
 	map->data.mlx_win = mlx_new_window(map->data.mlx, WIDTH, HEIGHT, "cub3D");
 	map->data.img.mlx_img = mlx_new_image(map->data.mlx, WIDTH, HEIGHT);
 	map->data.img.addr = mlx_get_data_addr(map->data.img.mlx_img, &map->data.img.bpp, &map->data.img.line_len, &map->data.img.endian);
-	render_minimap(map);
+	rendering_loop(map);
 	mlx_loop(map->data.mlx);
 	free_struct(map);
 	return (0);
