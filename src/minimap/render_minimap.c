@@ -6,7 +6,7 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 10:57:47 by joapedro          #+#    #+#             */
-/*   Updated: 2026/05/22 12:14:17 by joapedro         ###   ########.fr       */
+/*   Updated: 2026/05/22 12:26:06 by grui-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void	render_minimap(t_map *map)
 		x = 0;
 		while (map->grid[y][x])
 		{
+			if (is_player(map->grid[y][x], map))
+				draw_square(&map->data.img, x *TILE, y * TILE, TILE, 0x008000);
 			if (map->grid[y][x] == '1')
 				draw_square(&map->data.img, x *TILE, y * TILE, TILE, 0x0000FF);
 			/* else
