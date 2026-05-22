@@ -11,6 +11,14 @@
 # include <unistd.h>
 # include <sys/stat.h>
 # include <mlx.h>
+# include <X11/keysym.h>
+# include <X11/X.h>
+
+//Keys
+# define W 119
+# define A 9
+# define S 115
+# define D 100
 
 typedef struct s_img
 {
@@ -37,7 +45,11 @@ typedef struct	s_player
 	double	dirY;
 	double	planeY;
 	double	planeX;
-
+	//MovementKeys
+	int		up;
+	int		down;
+	int		left;
+	int		right;
 }	t_player;
 
 
@@ -110,7 +122,14 @@ void	error_free_array_and_struct(char *message, t_map *map, char **array);
 
 //minimap
 void	render_minimap(t_map *map);
+void	draw_square(t_img *img, int x, int y, int size, int color);
 
 //raycasting
 void	set_player_direction(t_map *map);
+
+//Movement
+int		key_press(int key, t_map *map);
+int		key_release(int key, t_map *map);
+void	player_movement(t_player *player);
+
 #endif
