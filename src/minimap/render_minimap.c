@@ -6,7 +6,7 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 10:57:47 by joapedro          #+#    #+#             */
-/*   Updated: 2026/05/22 16:08:38 by grui-ant         ###   ########.fr       */
+/*   Updated: 2026/05/22 17:38:12 by grui-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	render_minimap(t_map *map)
 			/* if (is_player(map->grid[y][x], map)) */
 			/* { */
 			/* 	draw_square(&map->data.img, (x * TILE) + (size / 2) + 3, (y * TILE) + (size / 2) + 3, size, 0x008000); */
-			/* 	draw_square(&map->data.img, map->player.dirX, map->player.dirY, 8, 0x800020); */
+			/* 	//draw_square(&map->data.img, map->player.dirX, map->player.dirY, 8, 0x800020); */
 			/* } */
 			if (map->grid[y][x] == '1')
 				draw_square(&map->data.img, x *TILE, y * TILE, TILE, 0x0000FF);

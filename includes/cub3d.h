@@ -123,6 +123,7 @@ void	error_free_array_and_struct(char *message, t_map *map, char **array);
 //minimap
 void	render_minimap(t_map *map);
 void	draw_square(t_img *img, int x, int y, int size, int color);
+int		rendering_loop(t_map *map);
 
 //raycasting
 void	set_player_direction(t_map *map);
@@ -130,6 +131,6 @@ void	set_player_direction(t_map *map);
 //Movement
 int		key_press(int key, t_map *map);
 int		key_release(int key, t_map *map);
-void	player_movement(t_player *player);
+void	player_movement(t_map *map);
 
 #endif
