@@ -6,7 +6,7 @@ RESET  = $(shell printf '\033[0m')
 
 NAME = cub3D
 
-SRC = $(wildcard src/*.c)
+SRC = $(shell find src -name "*.c")
 OBJS := $(SRC:%.c=%.o)
 
 CC = cc

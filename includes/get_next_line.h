@@ -5,7 +5,7 @@
 # endif
 
 char	*get_next_line(int fd);
-int		gnl_strlen(char *s);
+int		gl_strlen(char *s);
 char	*gnl_strchr(char *s, int c);
 char	*gnl_strjoin(char *s1, char *s2);
 void	shift(char *read_buffer);
