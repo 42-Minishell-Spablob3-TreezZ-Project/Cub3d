@@ -2,6 +2,7 @@
 # define CUB3D_H
 # define WIDTH 1280
 # define HEIGHT 720
+# define TILE 32
 # include "../libft/libft.h"
 # include "get_next_line.h"
 # include "error_messages.h"
@@ -10,6 +11,22 @@
 # include <unistd.h>
 # include <sys/stat.h>
 # include <mlx.h>
+
+typedef struct s_img
+{
+	void	*mlx_img;
+	char	*addr;
+	int		bpp; /* bits per pixel */
+	int		line_len;
+	int		endian;
+}	t_img;
+
+typedef struct s_data
+{
+    void	*mlx;
+    void	*mlx_win;
+    t_img	img;
+}	t_data;
 
 typedef struct	s_player
 {
@@ -40,6 +57,7 @@ typedef struct	s_map
 	int			width;
 	int			height;
 	t_player	player;
+	t_data		data;
 /* 	int			player_x;
 	int			player_y; */
 	int			floor_rgb[3];
@@ -88,6 +106,10 @@ void	free_array(char **array);
 void	error_exit(char *message);
 void	error_free_exit(char *message, t_map *map);
 void	error_free_array_and_struct(char *message, t_map *map, char **array);
+
+
+//minimap
+void	render_minimap(t_map *map);
 
 //raycasting
 void	set_player_direction(t_map *map);
