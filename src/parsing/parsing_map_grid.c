@@ -6,7 +6,7 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/12 12:40:58 by joapedro          #+#    #+#             */
-/*   Updated: 2026/05/18 12:53:56 by joapedro         ###   ########.fr       */
+/*   Updated: 2026/05/19 12:27:51 by joapedro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,10 @@ void	check_map_chars(char **map_grid, t_map *map)
 		{
 			if(!ft_strchr(valid_chars, map_grid[i][j]))
 				error_free_exit(INVALID_CHAR,map);
-			if(is_player(map_grid[i][j]))
+			if(is_player(map_grid[i][j], map))
 			{
-				map->player_y = i; //player position
-				map->player_x = j;
+				map->player.posY = (double)i + 0.5; //set player position in the center
+				map->player.posX = (double)j + 0.5;
 				map->player_count++;
 			}
 			j++;
@@ -115,10 +115,9 @@ int	parsing_map_grid(t_map *map, int start)
 	result = fill_map_grid_array(map, start); //preencher grid e retornar quantas vezes o i andou.
 	normalize_map(map); //preparar mapa para floodfill (rectangulizar)
 	//edge_scan(map);
-	map->height = get_map_height(map); //calcular altura do mapa
-	map->width = ft_strlen(map->grid[0]); // calcular comprimento do mapa
+	set_map_dimensions(map);
 	check_map_chars(map->grid, map); // checkar caracteres validos
-	flood_fill(map, map->player_y, map->player_x);
+	flood_fill(map, map->player.posY, map->player.posX);
 	int i = 0;
 	while (map->grid[i])
 	{

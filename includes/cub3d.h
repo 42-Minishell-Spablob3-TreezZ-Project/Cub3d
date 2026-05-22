@@ -2,7 +2,7 @@
 # define CUB3D_H
 # define WIDTH 1280
 # define HEIGHT 720
-
+# define TILE 32
 # include "../libft/libft.h"
 # include "get_next_line.h"
 # include "error_messages.h"
@@ -11,6 +11,35 @@
 # include <unistd.h>
 # include <sys/stat.h>
 # include <mlx.h>
+
+typedef struct s_img
+{
+	void	*mlx_img;
+	char	*addr;
+	int		bpp; /* bits per pixel */
+	int		line_len;
+	int		endian;
+}	t_img;
+
+typedef struct s_data
+{
+    void	*mlx;
+    void	*mlx_win;
+    t_img	img;
+}	t_data;
+
+typedef struct	s_player
+{
+	char	player_orientation;
+	double	posX;
+	double	posY;
+	double	dirX;
+	double	dirY;
+	double	planeY;
+	double	planeX;
+
+}	t_player;
+
 
 typedef struct	s_texture
 {
@@ -27,8 +56,10 @@ typedef struct	s_map
 	char		**grid;
 	int			width;
 	int			height;
-	int			player_x;
-	int			player_y;
+	t_player	player;
+	t_data		data;
+/* 	int			player_x;
+	int			player_y; */
 	int			floor_rgb[3];
 	int			ceiling_rgb[3];
 	int			is_map;
@@ -62,13 +93,12 @@ void	check_map_chars(char **map_grid, t_map *map);
 void	check_duplicated(t_map *map, int identifier);
 void	check_file_extension_xpm(char *path, t_map *map);
 int		parsing_map_grid(t_map *map, int start);
-int		is_player(char c);
+int		is_player(char c, t_map *map);
 int		get_longest_line(t_map *map);
-int		get_map_height(t_map *map);
-void	edge_scan(t_map *map);
+void	set_map_dimensions(t_map *map);
+//void	edge_scan(t_map *map);
 
 //free memory
-
 void	free_struct(t_map *map);
 void	free_array(char **array);
 
@@ -76,4 +106,11 @@ void	free_array(char **array);
 void	error_exit(char *message);
 void	error_free_exit(char *message, t_map *map);
 void	error_free_array_and_struct(char *message, t_map *map, char **array);
+
+
+//minimap
+void	render_minimap(t_map *map);
+
+//raycasting
+void	set_player_direction(t_map *map);
 #endif

@@ -6,15 +6,20 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/12 15:20:01 by joapedro          #+#    #+#             */
-/*   Updated: 2026/05/18 13:17:51 by joapedro         ###   ########.fr       */
+/*   Updated: 2026/05/19 12:27:23 by joapedro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	is_player(char c)
+int	is_player(char c, t_map *map)
 {
-	return (c == 'N' || c == 'S' || c == 'W' || c == 'E');
+	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
+	{
+		map->player.player_orientation = c;
+		return (1);
+	}	
+	return (0);
 }
 
 int	get_longest_line(t_map *map)
@@ -35,14 +40,15 @@ int	get_longest_line(t_map *map)
 	return (max);
 }
 
-int	get_map_height(t_map *map)
+void	set_map_dimensions(t_map *map)
 {
 	int	i;
 
 	i = 0;
 	while(map->grid[i])
 		i++;
-	return (i);
+	map->height = i;
+	map->width = ft_strlen(map->grid[0]);
 }
 
 /* void	edge_scan(t_map *map)
