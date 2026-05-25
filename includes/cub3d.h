@@ -16,7 +16,7 @@
 
 //Keys
 # define W 119
-# define A 9
+# define A 97
 # define S 115
 # define D 100
 

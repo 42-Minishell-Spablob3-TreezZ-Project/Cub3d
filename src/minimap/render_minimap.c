@@ -6,7 +6,7 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 10:57:47 by joapedro          #+#    #+#             */
-/*   Updated: 2026/05/22 17:38:12 by grui-ant         ###   ########.fr       */
+/*   Updated: 2026/05/25 13:26:01 by joapedro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 void	img_pix_put(t_img *img, int x, int y, int color)
 {
 	char	*pixel;
+	if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
+		return ;
 	pixel = img->addr + (y * img->line_len + x * (img->bpp / 8));
 	*(int *)pixel = color;
 }
