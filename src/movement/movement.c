@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grui-ant <grui-ant@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 15:16:39 by grui-ant          #+#    #+#             */
-/*   Updated: 2026/05/22 17:35:59 by grui-ant         ###   ########.fr       */
+/*   Updated: 2026/05/25 13:21:54 by joapedro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,13 @@
 int	key_press(int key, t_map *map)
 {
 	if (key == W)
-	{
 		map->player.up = 1;
-		map->player.posY++;
-		/* draw_square(&map->data.img, map->player.posX * TILE, map->player.posY * TILE, 13, 0x008000); */
-		/* mlx_put_image_to_window(map->data.mlx, map->data.mlx_win, map->data.img.mlx_img, 0, 0); */
-		printf("P Position: %f\n", map->player.posY);
-	}
 	if (key == S)
 		map->player.down = 1;
 	if (key == A)
 		map->player.left = 1;
 	if (key == D)
 		map->player.right = 1;
-	rendering_loop(map);
 	return (0);
 }
 
@@ -50,14 +43,11 @@ void	player_movement(t_map *map)
 	int mov_speed = 2;
 
 	if (map->player.up)
-		map->player.posY++;
+		map->player.posY -= mov_speed;
 	if (map->player.down)
-	{
 		map->player.posY += mov_speed;
-		printf("P Position: %f\n", map->player.posY);
-	}
-	/* if (player->left) */
-	/* 	player->posX -= mov_speed; */
-	/* if (player->right) */
-	/* 	player->posX += mov_speed; */
+	if (map->player.left)
+	 	map->player.posX -= mov_speed;
+	if (map->player.right)
+		map->player.posX += mov_speed;
 }

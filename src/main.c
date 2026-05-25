@@ -6,22 +6,25 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 10:25:28 by joapedro          #+#    #+#             */
-/*   Updated: 2026/05/22 18:13:50 by grui-ant         ###   ########.fr       */
+/*   Updated: 2026/05/25 13:19:34 by joapedro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+void init_game(t_map *map)
+{
+	map->data.mlx = mlx_init(); // criar funcao para iniciar janela/jogo
+	map->data.mlx_win = mlx_new_window(map->data.mlx, WIDTH, HEIGHT, "cub3D");
+	map->data.img.mlx_img = mlx_new_image(map->data.mlx, WIDTH, HEIGHT);
+	map->data.img.addr = mlx_get_data_addr(map->data.img.mlx_img, &map->data.img.bpp, &map->data.img.line_len, &map->data.img.endian);
+}
 int	rendering_loop(t_map *map)
 {
 	int	size;
-	t_map *tmp = map;
 
 	size = 13;
-	//player_movement(map);
-	printf("ENTROU\n");
-	printf("mapa 1: %p\n", tmp);
-	printf("mapa 2: %s\n", tmp->grid[0]);
+	player_movement(map);
 	render_minimap(map);
 	draw_square(&map->data.img, map->player.posX * TILE, map->player.posY * TILE, size, 0x008000);
 	mlx_put_image_to_window(map->data.mlx, map->data.mlx_win, map->data.img.mlx_img, 0, 0);
@@ -45,20 +48,10 @@ int	main(int ac, char **av)
 	map_load(file_name, map);
 	parsing(map);
 	set_player_direction(map);
-	/* printf("posY: %f\n", map->player.posY);
-	printf("posX: %f\n", map->player.posX);
-	printf("dirY: %f\n", map->player.dirY);
-	printf("dirX:%f\n", map->player.dirX); */
-	map->data.mlx = mlx_init(); // criar funcao para iniciar janela/jogo
-	map->data.mlx_win = mlx_new_window(map->data.mlx, WIDTH, HEIGHT, "cub3D");
-	map->data.img.mlx_img = mlx_new_image(map->data.mlx, WIDTH, HEIGHT);
-	map->data.img.addr = mlx_get_data_addr(map->data.img.mlx_img, &map->data.img.bpp, &map->data.img.line_len, &map->data.img.endian);
-	mlx_put_image_to_window(map->data.mlx, map->data.mlx_win, map->data.img.mlx_img, 0, 0);
-	rendering_loop(map);
-	mlx_hook(map->data.mlx_win, 2, KeyPressMask, key_press, &map->player);
-	mlx_hook(map->data.mlx_win, 3, KeyReleaseMask, key_release, &map->player);
-	//rendering_loop(map);
-//	mlx_loop_hook(map->data.mlx, rendering_loop, &map->data.img);
+	init_game(map);
+	mlx_hook(map->data.mlx_win, 2, KeyPressMask, key_press, map);
+	mlx_hook(map->data.mlx_win, 3, KeyReleaseMask, key_release, map);
+	mlx_loop_hook(map->data.mlx, rendering_loop, map);
 	mlx_loop(map->data.mlx);
 	free_struct(map);
 	return (0);
