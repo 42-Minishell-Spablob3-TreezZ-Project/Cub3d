@@ -6,12 +6,17 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 10:25:28 by joapedro          #+#    #+#             */
-/*   Updated: 2026/05/25 13:19:34 by joapedro         ###   ########.fr       */
+/*   Updated: 2026/05/25 15:00:10 by joapedro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+
+void	clear_image(t_map *map, int size)
+{
+	draw_square(&map->data.img, map->player.posX * TILE, map->player.posY * TILE, size, 0x000000);
+}
 void init_game(t_map *map)
 {
 	map->data.mlx = mlx_init(); // criar funcao para iniciar janela/jogo
@@ -23,7 +28,8 @@ int	rendering_loop(t_map *map)
 {
 	int	size;
 
-	size = 13;
+	size = 7;
+	clear_image(map, size);
 	player_movement(map);
 	render_minimap(map);
 	draw_square(&map->data.img, map->player.posX * TILE, map->player.posY * TILE, size, 0x008000);

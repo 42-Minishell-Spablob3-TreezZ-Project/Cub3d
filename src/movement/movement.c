@@ -6,7 +6,7 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 15:16:39 by grui-ant          #+#    #+#             */
-/*   Updated: 2026/05/25 13:21:54 by joapedro         ###   ########.fr       */
+/*   Updated: 2026/05/25 15:01:18 by joapedro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,35 @@ int	key_release(int key, t_map *map)
 
 void	player_movement(t_map *map)
 {
-	int mov_speed = 2;
-
+	double mov_speed;
+	int	y;
+	int	x;
+	
+	y = map->player.posY;
+	x = map->player.posX;
+	mov_speed = 0.005;
 	if (map->player.up)
+	{
+		if (map->grid[y - 1][x] == '1')
+			return ;
 		map->player.posY -= mov_speed;
+	}
 	if (map->player.down)
+	{
+		if (map->grid[y + 1][x] == '1')
+			return ;
 		map->player.posY += mov_speed;
+	}
 	if (map->player.left)
-	 	map->player.posX -= mov_speed;
+	{
+		if (map->grid[y][x - 1] == '1')
+			return ;
+		map->player.posX -= mov_speed;
+	}
 	if (map->player.right)
+	{
+		if (map->grid[y][x + 1] == '1')
+			return ;
 		map->player.posX += mov_speed;
+	}
 }

@@ -31,9 +31,9 @@ typedef struct s_img
 
 typedef struct s_data
 {
-    void	*mlx;
-    void	*mlx_win;
-    t_img	img;
+	void	*mlx;
+	void	*mlx_win;
+	t_img	img;
 }	t_data;
 
 typedef struct	s_player
@@ -132,5 +132,6 @@ void	set_player_direction(t_map *map);
 int		key_press(int key, t_map *map);
 int		key_release(int key, t_map *map);
 void	player_movement(t_map *map);
+void	clear_image(t_map *map, int size);
 
 #endif

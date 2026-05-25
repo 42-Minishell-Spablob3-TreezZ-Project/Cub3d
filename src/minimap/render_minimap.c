@@ -6,7 +6,7 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 10:57:47 by joapedro          #+#    #+#             */
-/*   Updated: 2026/05/25 13:26:01 by joapedro         ###   ########.fr       */
+/*   Updated: 2026/05/25 14:20:04 by joapedro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void	draw_square(t_img *img, int x, int y, int size, int color)
 
 void	render_minimap(t_map *map)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 	int	size;
 
 	size = 13;
