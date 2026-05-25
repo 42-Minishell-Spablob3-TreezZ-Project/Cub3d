@@ -6,14 +6,14 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 10:25:28 by joapedro          #+#    #+#             */
-/*   Updated: 2026/05/25 15:00:10 by joapedro         ###   ########.fr       */
+/*   Updated: 2026/05/25 15:16:03 by joapedro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 
-void	clear_image(t_map *map, int size)
+void	clear_player_image(t_map *map, int size)
 {
 	draw_square(&map->data.img, map->player.posX * TILE, map->player.posY * TILE, size, 0x000000);
 }
@@ -29,7 +29,7 @@ int	rendering_loop(t_map *map)
 	int	size;
 
 	size = 7;
-	clear_image(map, size);
+	clear_player_image(map, size);
 	player_movement(map);
 	render_minimap(map);
 	draw_square(&map->data.img, map->player.posX * TILE, map->player.posY * TILE, size, 0x008000);

@@ -132,6 +132,6 @@ void	set_player_direction(t_map *map);
 int		key_press(int key, t_map *map);
 int		key_release(int key, t_map *map);
 void	player_movement(t_map *map);
-void	clear_image(t_map *map, int size);
+void	clear_player_image(t_map *map, int size);
 
 #endif
