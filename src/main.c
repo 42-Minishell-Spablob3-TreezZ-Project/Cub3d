@@ -6,7 +6,7 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 10:25:28 by joapedro          #+#    #+#             */
-/*   Updated: 2026/05/26 16:24:42 by grui-ant         ###   ########.fr       */
+/*   Updated: 2026/05/26 17:13:52 by grui-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	clear_player_image(t_map *map, int size)
 {
-	draw_square(&map->data.img, map->player.posX, map->player.posY, size, 0x000000);
+	draw_square(&map->data.img, map->player.posX * TILE, map->player.posY * TILE, size, 0x000000);
 }
 void init_game(t_map *map)
 {
@@ -29,10 +29,10 @@ int	rendering_loop(t_map *map)
 	int	size;
 
 	size = TILE;
-	clear_player_image(map, 1);
+	clear_player_image(map, size);
 	render_minimap(map);
 	player_movement(map);
-	draw_square(&map->data.img, map->player.posX, map->player.posY, 1, 0x008000);
+	draw_square(&map->data.img, map->player.posX * TILE, map->player.posY * TILE, TILE, 0x008000);
 	mlx_put_image_to_window(map->data.mlx, map->data.mlx_win, map->data.img.mlx_img, 0, 0);
 	return (0);
 }
