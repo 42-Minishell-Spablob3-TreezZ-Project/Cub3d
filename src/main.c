@@ -6,7 +6,7 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 10:25:28 by joapedro          #+#    #+#             */
-/*   Updated: 2026/05/25 15:16:03 by joapedro         ###   ########.fr       */
+/*   Updated: 2026/05/26 15:42:25 by grui-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ int	rendering_loop(t_map *map)
 {
 	int	size;
 
-	size = 7;
+	size = TILE;
 	clear_player_image(map, size);
-	player_movement(map);
 	render_minimap(map);
+	player_movement(map);
 	draw_square(&map->data.img, map->player.posX * TILE, map->player.posY * TILE, size, 0x008000);
 	mlx_put_image_to_window(map->data.mlx, map->data.mlx_win, map->data.img.mlx_img, 0, 0);
 	return (0);
