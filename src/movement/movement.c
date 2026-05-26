@@ -6,7 +6,7 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 15:16:39 by grui-ant          #+#    #+#             */
-/*   Updated: 2026/05/26 16:10:41 by grui-ant         ###   ########.fr       */
+/*   Updated: 2026/05/26 16:38:08 by grui-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	player_movement(t_map *map)
 	mov_speed = 0.005;
 	if (map->player.up)
 	{
-		if (y < map->height && map->grid[y][x] == '1')
+		if (map->grid[y - 1][x] == '1')
 			return ;
 		map->player.posY -= mov_speed;
 	}
@@ -61,7 +61,7 @@ void	player_movement(t_map *map)
 	}
 	if (map->player.left)
 	{
-		if (x < map->width && map->grid[y][x] == '1')
+		if (map->grid[y][x - 1] == '1')
 			return ;
 		map->player.posX -= mov_speed;
 	}
