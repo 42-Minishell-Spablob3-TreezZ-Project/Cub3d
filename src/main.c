@@ -6,17 +6,17 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 10:25:28 by joapedro          #+#    #+#             */
-/*   Updated: 2026/05/28 16:37:09 by grui-ant         ###   ########.fr       */
+/*   Updated: 2026/05/28 19:25:19 by grui-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-
 void	clear_player_image(t_map *map, int size)
 {
 	draw_square(&map->data.img, map->player.posX * size, map->player.posY * size, size, 0x000000);
 }
+
 void init_game(t_map *map)
 {
 	map->data.mlx = mlx_init(); // criar funcao para iniciar janela/jogo
@@ -63,15 +63,39 @@ int	check_dims(t_map *map)
 	return (size);
 }
 
+void	expanded_minimap(t_map *map, int size)
+{
+//	render_minimap(map, size, 0x000000); //Clear small minimap
+	render_minimap(map, (size * 2), 0x0000FF);
+	draw_square(&map->data.img, map->player.posX * (size * 2), map->player.posY * (size * 2), (size * 2), 0x008000);
+}
+
+void	clear_expanded(t_map *map, int size)
+{
+	render_minimap(map, (size * 2), 0x000000);
+	draw_square(&map->data.img, map->player.posX * (size * 2), map->player.posY * (size * 2), (size * 2), 0x000000);
+}
+
 int	rendering_loop(t_map *map)
 {
 	int	size;
 
 	size = (check_dims(map) / ((WIDTH / 1000.0) * 2));
+//	if (!map->is_expanded || map->is_expanded % 2 == 0)
+//	{
+	clear_expanded(map, size);
 	clear_player_image(map, size);
-	render_minimap(map, size);
+	render_minimap(map, size, 0x0000FF);
 	player_movement(map);
 	draw_square(&map->data.img, map->player.posX * size, map->player.posY * size, size, 0x008000);
+//	}
+	//player_movement(map);
+	if (map->is_expanded && map->is_expanded % 2 != 0)
+	{
+		render_minimap(map, size, 0x000000);
+		draw_square(&map->data.img, map->player.posX * size, map->player.posY * size, size, 0x000000);
+		expanded_minimap(map, size);
+	}
 	mlx_put_image_to_window(map->data.mlx, map->data.mlx_win, map->data.img.mlx_img, 0, 0);
 	return (0);
 }

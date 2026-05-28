@@ -6,7 +6,7 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 15:16:39 by grui-ant          #+#    #+#             */
-/*   Updated: 2026/05/26 17:15:05 by grui-ant         ###   ########.fr       */
+/*   Updated: 2026/05/28 19:03:15 by grui-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	key_press(int key, t_map *map)
 		map->player.left = 1;
 	if (key == D)
 		map->player.right = 1;
+	if (key == M)
+		map->is_expanded++;
 	return (0);
 }
 
@@ -35,6 +37,8 @@ int	key_release(int key, t_map *map)
 		map->player.left = 0;
 	if (key == D)
 		map->player.right = 0;
+//	if (key == M)
+//		map->is_expanded = 0;
 	return (0);
 }
 

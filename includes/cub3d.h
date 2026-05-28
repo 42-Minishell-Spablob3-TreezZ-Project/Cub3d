@@ -19,6 +19,7 @@
 # define A 97
 # define S 115
 # define D 100
+# define M 109 //Expand and minimize minimap
 
 typedef struct s_img
 {
@@ -68,6 +69,7 @@ typedef struct	s_map
 	char		**grid;
 	int			width;
 	int			height;
+	int			is_expanded;
 	t_player	player;
 	t_data		data;
 /* 	int			player_x;
@@ -121,7 +123,7 @@ void	error_free_array_and_struct(char *message, t_map *map, char **array);
 
 
 //minimap
-void	render_minimap(t_map *map, int size);
+void	render_minimap(t_map *map, int size, int color);
 void	draw_square(t_img *img, int x, int y, int size, int color);
 int		rendering_loop(t_map *map);
 
