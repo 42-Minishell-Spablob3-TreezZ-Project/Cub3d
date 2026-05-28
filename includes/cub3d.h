@@ -121,7 +121,7 @@ void	error_free_array_and_struct(char *message, t_map *map, char **array);
 
 
 //minimap
-void	render_minimap(t_map *map);
+void	render_minimap(t_map *map, int size);
 void	draw_square(t_img *img, int x, int y, int size, int color);
 int		rendering_loop(t_map *map);
 
