@@ -49,6 +49,8 @@ typedef struct	s_player
 	double	planeX;
 	double	deltaDistY;
 	double	deltaDistX;
+	double	rayDirX;
+	double	rayDirY;
 	//MovementKeys
 	int		up;
 	int		down;

@@ -6,7 +6,7 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 09:37:32 by joapedro          #+#    #+#             */
-/*   Updated: 2026/06/01 14:22:41 by joapedro         ###   ########.fr       */
+/*   Updated: 2026/06/01 14:38:56 by joapedro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,21 @@ void	set_player_direction(t_map *map)
 		set_east_west_dir(map, orientation);
 }
 
-
-void	render_frame(t_map *map)
+void	ray_direction(t_player *player, int x)
 {
 	double	cameraX;
 	double	rayDirX;
 	double	rayDirY;
+	
+	cameraX = (2.0 * x / WIDTH) - 1.0;
+	player->rayDirX = player->dirX + player->planeY * cameraX;
+	player->rayDirY = player->dirY + player->planeX * cameraX;
+	player->deltaDistY = fabs(1 / rayDirY);
+	player->deltaDistX = fabs(1 / rayDirX);
+}
+
+void	render_frame(t_map *map)
+{
 	double	DirX;
 	double	DirY;
 	int		x;
@@ -72,12 +81,8 @@ void	render_frame(t_map *map)
 	x = 0;
 	while (x < WIDTH)
 	{
-		cameraX = (2.0 * x / WIDTH) - 1.0;
-		rayDirX = map->player.dirX + map->player.planeY * cameraX;
-		rayDirY = map->player.dirY + map->player.planeX * cameraX;
-		map->player.deltaDistY = fabs(1 / rayDirY);
-		map->player.deltaDistX = fabs(1 / rayDirX);
-		DDA(rayDirX, rayDirY);
+		ray_direction(&map->player, x);
+		DDA(map->player.rayDirX, map->player.rayDirY);
 		x++;
 	}
 }
