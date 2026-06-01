@@ -6,7 +6,7 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 09:37:32 by joapedro          #+#    #+#             */
-/*   Updated: 2026/06/01 14:38:56 by joapedro         ###   ########.fr       */
+/*   Updated: 2026/06/01 15:22:54 by joapedro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,17 +59,42 @@ void	set_player_direction(t_map *map)
 		set_east_west_dir(map, orientation);
 }
 
-void	ray_direction(t_player *player, int x)
+void	ray_direction(t_player *player, t_ray *ray, int x)
 {
 	double	cameraX;
 	double	rayDirX;
 	double	rayDirY;
 	
 	cameraX = (2.0 * x / WIDTH) - 1.0;
-	player->rayDirX = player->dirX + player->planeY * cameraX;
-	player->rayDirY = player->dirY + player->planeX * cameraX;
-	player->deltaDistY = fabs(1 / rayDirY);
-	player->deltaDistX = fabs(1 / rayDirX);
+	ray->rayDirX = player->dirX + player->planeY * cameraX;
+	ray->rayDirY = player->dirY + player->planeX * cameraX;
+	ray->deltaDistY = fabs(1 / rayDirY);
+	ray->deltaDistX = fabs(1 / rayDirX);
+}
+
+void	calculate_step_and_side_distance(t_map *map, t_ray *ray)
+{
+	// calcular step e sideDistance inicial 
+	if (ray->rayDirX < 0)
+	{
+		ray->stepX = -1;
+		ray->sideDistX = (map->player.posX - ray->mapX) * ray->deltaDistX; //distancia desde jogador ate proxima gridline (primeiro impacto com vertical grid line)
+	}
+	else
+	{
+		ray->stepX = 1;
+		ray->sideDistX = (ray->mapX + 1.0 - map->player.posX) * ray->deltaDistX;
+	}
+	if (ray->rayDirY < 0)
+	{
+		ray->stepX = -1;
+		ray->deltaDistY = (map->player.posY - ray->mapY) * ray->deltaDistY;
+	}
+	else
+	{
+		ray->stepY = 1;
+		ray->sideDistY = (ray->mapY + 1.0 - map->player.posY) * ray->deltaDistY;
+	}
 }
 
 void	render_frame(t_map *map)
@@ -81,8 +106,9 @@ void	render_frame(t_map *map)
 	x = 0;
 	while (x < WIDTH)
 	{
-		ray_direction(&map->player, x);
-		DDA(map->player.rayDirX, map->player.rayDirY);
+		ray_direction(&map->player, &map->ray, x);
+		calculate_step_and_side_distance(map, &map->ray);
+		DDA(map->ray.rayDirX, map->ray.rayDirY);
 		x++;
 	}
 }

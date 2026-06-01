@@ -38,6 +38,20 @@ typedef struct s_data
 	t_img	img;
 }	t_data;
 
+typedef struct s_ray
+{
+	double	deltaDistY;
+	double	deltaDistX;
+	double	rayDirX;
+	double	rayDirY;
+	int	mapX; // posicao da celula em que estamos
+	int	mapY;
+	double sideDistX; // comprimento do raio desde a posicao do player ate proxima x or y-side
+	double sideDistY;
+	int		stepX;
+	int		stepY;
+}	t_ray;
+
 typedef struct	s_player
 {
 	char	player_orientation;
@@ -47,11 +61,6 @@ typedef struct	s_player
 	double	dirY;
 	double	planeY;
 	double	planeX;
-	double	deltaDistY;
-	double	deltaDistX;
-	double	rayDirX;
-	double	rayDirY;
-	//MovementKeys
 	int		up;
 	int		down;
 	int		left;
@@ -77,6 +86,7 @@ typedef struct	s_map
 	int			is_expanded;
 	t_player	player;
 	t_data		data;
+	t_ray		ray;
 /* 	int			player_x;
 	int			player_y; */
 	int			floor_rgb[3];
