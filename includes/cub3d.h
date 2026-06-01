@@ -7,6 +7,7 @@
 # include "get_next_line.h"
 # include "error_messages.h"
 # include <stdio.h>
+# include <math.h>
 # include <fcntl.h>
 # include <unistd.h>
 # include <sys/stat.h>
@@ -46,6 +47,8 @@ typedef struct	s_player
 	double	dirY;
 	double	planeY;
 	double	planeX;
+	double	deltaDistY;
+	double	deltaDistX;
 	//MovementKeys
 	int		up;
 	int		down;

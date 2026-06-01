@@ -6,7 +6,7 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 09:37:32 by joapedro          #+#    #+#             */
-/*   Updated: 2026/05/19 14:22:17 by joapedro         ###   ########.fr       */
+/*   Updated: 2026/06/01 14:22:41 by joapedro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,3 +58,27 @@ void	set_player_direction(t_map *map)
 	else if(orientation == 'E' || orientation == 'W')
 		set_east_west_dir(map, orientation);
 }
+
+
+void	render_frame(t_map *map)
+{
+	double	cameraX;
+	double	rayDirX;
+	double	rayDirY;
+	double	DirX;
+	double	DirY;
+	int		x;
+	
+	x = 0;
+	while (x < WIDTH)
+	{
+		cameraX = (2.0 * x / WIDTH) - 1.0;
+		rayDirX = map->player.dirX + map->player.planeY * cameraX;
+		rayDirY = map->player.dirY + map->player.planeX * cameraX;
+		map->player.deltaDistY = fabs(1 / rayDirY);
+		map->player.deltaDistX = fabs(1 / rayDirX);
+		DDA(rayDirX, rayDirY);
+		x++;
+	}
+}
+
