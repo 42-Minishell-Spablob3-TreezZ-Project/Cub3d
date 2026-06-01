@@ -6,7 +6,7 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 09:37:32 by joapedro          #+#    #+#             */
-/*   Updated: 2026/06/01 15:22:54 by joapedro         ###   ########.fr       */
+/*   Updated: 2026/06/01 15:46:55 by joapedro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ void	ray_direction(t_player *player, t_ray *ray, int x)
 	cameraX = (2.0 * x / WIDTH) - 1.0;
 	ray->rayDirX = player->dirX + player->planeY * cameraX;
 	ray->rayDirY = player->dirY + player->planeX * cameraX;
+	ray->mapX = (int)player->posX;
+	ray->mapY = (int)player->posY;
 	ray->deltaDistY = fabs(1 / rayDirY);
 	ray->deltaDistX = fabs(1 / rayDirX);
 }
@@ -97,6 +99,30 @@ void	calculate_step_and_side_distance(t_map *map, t_ray *ray)
 	}
 }
 
+void	DDA(t_map *map, t_ray *ray)
+{
+	int	hit;
+
+	hit = 0;
+	while (hit == 0)
+	{
+		if (ray->sideDistX < ray->sideDistY)
+		{
+			ray->sideDistX += ray->deltaDistX;
+			ray->mapX += ray->stepX;
+			ray->side = 0;
+		}
+		else
+		{
+			ray->sideDistY += ray->deltaDistY;
+			ray->mapY += ray->stepY;
+			ray->side = 1;
+		}
+		if (map->grid[ray->mapY][ray->mapX] == '1')
+			hit = 1;
+	}
+}
+
 void	render_frame(t_map *map)
 {
 	double	DirX;
@@ -108,7 +134,7 @@ void	render_frame(t_map *map)
 	{
 		ray_direction(&map->player, &map->ray, x);
 		calculate_step_and_side_distance(map, &map->ray);
-		DDA(map->ray.rayDirX, map->ray.rayDirY);
+		DDA(map, &map->ray);
 		x++;
 	}
 }

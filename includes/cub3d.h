@@ -44,10 +44,11 @@ typedef struct s_ray
 	double	deltaDistX;
 	double	rayDirX;
 	double	rayDirY;
-	int	mapX; // posicao da celula em que estamos
-	int	mapY;
-	double sideDistX; // comprimento do raio desde a posicao do player ate proxima x or y-side
-	double sideDistY;
+	int		mapX; // posicao da celula em que estamos
+	int		mapY;
+	double	sideDistX; // comprimento do raio desde a posicao do player ate proxima x or y-side
+	double	sideDistY;
+	int		side;
 	int		stepX;
 	int		stepY;
 }	t_ray;
