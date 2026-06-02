@@ -127,6 +127,12 @@ void	render_minimap(t_map *map, int size, int color);
 void	draw_square(t_img *img, int x, int y, int size, int color);
 int		rendering_loop(t_map *map);
 
+//expanded minimap
+int		size_scales(int size);
+int		check_dims(t_map *map);
+void	expanded_minimap(t_map *map, int size);
+void	clear_expanded(t_map *map, int size);
+
 //raycasting
 void	set_player_direction(t_map *map);
 
