@@ -51,7 +51,7 @@ typedef struct s_ray
 	int		side;
 	int		stepX;
 	int		stepY;
-	double	perpWallDist
+	double	perpWallDist;
 }	t_ray;
 
 typedef struct	s_wall
@@ -158,6 +158,11 @@ void	set_player_direction(t_map *map);
 int		key_press(int key, t_map *map);
 int		key_release(int key, t_map *map);
 void	player_movement(t_map *map);
-void	clear_player_image(t_map *map, int size);
+//void	clear_player_image(t_map *map, int size);
+
+//render world
+void	render_world(t_map *map);
+void	img_pix_put(t_img *img, int x, int y, int color);
+int		rgb_to_int(int r, int g, int b);
 
 #endif

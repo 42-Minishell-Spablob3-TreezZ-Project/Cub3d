@@ -6,7 +6,7 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/02 09:54:40 by joapedro          #+#    #+#             */
-/*   Updated: 2026/06/02 12:29:20 by joapedro         ###   ########.fr       */
+/*   Updated: 2026/06/02 14:01:03 by joapedro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,31 +74,66 @@ void	dda(t_map *map, t_ray *ray)
 	}
 }
 
-void	perpWallDist(t_ray *ray)
+void	wall_distance(t_ray *ray)
 {
 	// calcular a distancia da camara ate parede evitando o efeito fisheye
 	if (ray->side == 0)
 		ray->perpWallDist = (ray->sideDistX - ray->deltaDistX);
 	else
 		ray->perpWallDist = (ray->sideDistY - ray->deltaDistY);
+	
 }
 
-void	draw_wall(t_map *map, t_ray *ray, t_wall *wall)
+void	get_wall_height(t_map *map, t_ray *ray, t_wall *wall)
 {
+	(void)map;
 	wall->wall_height = (int)(HEIGHT / ray->perpWallDist); //tamanho da wall inversamente proporcional a distancia entre player e wall.
-	wall->draw_start = wall->wall_height / 2 + HEIGHT / 2;
-	if (wall->draw_end < 0)
-		wall->draw_start = 0;
+	
+	wall->draw_start = -wall->wall_height / 2 + HEIGHT / 2;
 	wall->draw_end = wall->wall_height / 2 + HEIGHT / 2;
+	
+	if (wall->draw_start < 0)
+		wall->draw_start = 0;
+	
 	if (wall->draw_end >= HEIGHT)
 		wall->draw_end = HEIGHT - 1;
 }
 
-void	render_frame(t_map *map)
+int rgb_to_int(int r, int g, int b)
 {
-	double	DirX;
-	double	DirY;
-	int		x;
+	return (r << 16) | (g << 8) | b;
+}
+
+void	render_ceiling_floor(t_map *map, int x, t_wall *wall)
+{
+	int	y;
+
+	y = 0;
+	while (y < wall->draw_start)
+	{
+		img_pix_put(&map->data.img, x, y, rgb_to_int(map->ceiling_rgb[0],
+			map->ceiling_rgb[1],
+			map->ceiling_rgb[2]));
+		y++;
+	}
+	y = wall->draw_end;
+	while (y < HEIGHT)
+	{
+		img_pix_put(&map->data.img, x, y, rgb_to_int(map->floor_rgb[0],
+			map->floor_rgb[1],
+			map->floor_rgb[2]));
+		y++;
+	}
+}
+/* void	render_wall(t_map *map, int x)
+{
+	(void)x;
+	get_wall_height(map, &map->ray, &map->wall);
+} */
+
+void	render_world(t_map *map)
+{
+	int	x;
 	
 	x = 0;
 	while (x < WIDTH)
@@ -107,7 +142,9 @@ void	render_frame(t_map *map)
 		calculate_step_and_side_distance(map, &map->ray);
 		dda(map, &map->ray);
 		wall_distance(&map->ray);
-		draw_wall(map, &map->ray, &map->wall);
+		get_wall_height(map, &map->ray, &map->wall);
+		render_ceiling_floor(map, x, &map->wall);
+		//render_wall(map, x);
 		x++;
 	}
 }
