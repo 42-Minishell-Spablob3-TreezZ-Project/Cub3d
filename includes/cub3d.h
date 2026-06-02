@@ -21,6 +21,9 @@
 # define S 115
 # define D 100
 # define M 109 //Expand and minimize minimap
+# define LEFT 65361
+# define RIGHT 65363
+# define ROTATE_SPEED 0.01
 
 typedef struct s_img
 {
@@ -71,10 +74,13 @@ typedef struct	s_player
 	double	dirY;
 	double	planeY;
 	double	planeX;
+	double	player_angle;
 	int		up;
 	int		down;
 	int		left;
 	int		right;
+	int		rot_left;
+	int		rot_right;
 }	t_player;
 
 
