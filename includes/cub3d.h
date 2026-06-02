@@ -51,7 +51,16 @@ typedef struct s_ray
 	int		side;
 	int		stepX;
 	int		stepY;
+	double	perpWallDist
 }	t_ray;
+
+typedef struct	s_wall
+{
+	int	wall_height;
+	int	draw_start;
+	int	draw_end;
+
+}	t_wall;
 
 typedef struct	s_player
 {
@@ -88,8 +97,7 @@ typedef struct	s_map
 	t_player	player;
 	t_data		data;
 	t_ray		ray;
-/* 	int			player_x;
-	int			player_y; */
+	t_wall		wall;
 	int			floor_rgb[3];
 	int			ceiling_rgb[3];
 	int			is_map;
