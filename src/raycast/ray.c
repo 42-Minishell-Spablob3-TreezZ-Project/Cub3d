@@ -6,7 +6,7 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/02 09:54:40 by joapedro          #+#    #+#             */
-/*   Updated: 2026/06/02 14:01:03 by joapedro         ###   ########.fr       */
+/*   Updated: 2026/06/02 15:22:53 by joapedro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ray_direction(t_player *player, t_ray *ray, int x)
 	ray->rayDirY = player->dirY + player->planeY * cameraX;
 	ray->mapX = (int)player->posX;
 	ray->mapY = (int)player->posY;
-	ray->deltaDistY = fabs(1 / ray->rayDirY); // distancia que o raio precisa percorrer para atravessar celula da grelha X ou Y
+	ray->deltaDistY = fabs(1 / ray->rayDirY); //distancia que o raio precisa percorrer para atravessar celula da grelha X ou Y
 	ray->deltaDistX = fabs(1 / ray->rayDirX);
 }
 

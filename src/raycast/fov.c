@@ -6,7 +6,7 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 09:37:32 by joapedro          #+#    #+#             */
-/*   Updated: 2026/06/02 09:54:36 by joapedro         ###   ########.fr       */
+/*   Updated: 2026/06/02 14:16:30 by joapedro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,5 @@ void	set_player_direction(t_map *map)
 	else if(orientation == 'E' || orientation == 'W')
 		set_east_west_dir(map, orientation);
 }
-
 
 

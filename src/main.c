@@ -6,7 +6,7 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 10:25:28 by joapedro          #+#    #+#             */
-/*   Updated: 2026/06/02 13:30:28 by joapedro         ###   ########.fr       */
+/*   Updated: 2026/06/02 15:25:39 by joapedro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,13 +89,13 @@ int	rendering_loop(t_map *map)
 	player_movement(map);
 	draw_square(&map->data.img, map->player.posX * size, map->player.posY * size, size, 0x008000);
 //	}
-	//player_movement(map);
-	if (map->is_expanded && map->is_expanded % 2 != 0)
-	{
-		render_minimap(map, size, 0x000000);
-		draw_square(&map->data.img, map->player.posX * size, map->player.posY * size, size, 0x000000);
-		expanded_minimap(map, size);
+if (map->is_expanded && map->is_expanded % 2 != 0)
+{
+	render_minimap(map, size, 0x000000);
+	draw_square(&map->data.img, map->player.posX * size, map->player.posY * size, size, 0x000000);
+	expanded_minimap(map, size);
 	} */
+	player_movement(map);
 	render_world(map);
 	mlx_put_image_to_window(map->data.mlx, map->data.mlx_win, map->data.img.mlx_img, 0, 0);
 	return (0);
