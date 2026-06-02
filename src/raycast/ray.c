@@ -6,7 +6,7 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/02 09:54:40 by joapedro          #+#    #+#             */
-/*   Updated: 2026/06/02 15:22:53 by joapedro         ###   ########.fr       */
+/*   Updated: 2026/06/02 17:57:28 by joapedro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,11 +125,17 @@ void	render_ceiling_floor(t_map *map, int x, t_wall *wall)
 		y++;
 	}
 }
-/* void	render_wall(t_map *map, int x)
+void	render_wall(t_map *map, int x)
 {
-	(void)x;
-	get_wall_height(map, &map->ray, &map->wall);
-} */
+	int y;
+
+	y = map->wall.draw_start;
+	while (y < map->wall.draw_end)
+	{
+		img_pix_put(&map->data.img, x, y, 0xFF0000);
+		y++;
+	}
+}
 
 void	render_world(t_map *map)
 {
@@ -144,7 +150,7 @@ void	render_world(t_map *map)
 		wall_distance(&map->ray);
 		get_wall_height(map, &map->ray, &map->wall);
 		render_ceiling_floor(map, x, &map->wall);
-		//render_wall(map, x);
+		render_wall(map, x);
 		x++;
 	}
 }

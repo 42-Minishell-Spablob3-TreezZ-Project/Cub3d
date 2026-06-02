@@ -6,7 +6,7 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 15:16:39 by grui-ant          #+#    #+#             */
-/*   Updated: 2026/05/28 19:03:15 by grui-ant         ###   ########.fr       */
+/*   Updated: 2026/06/02 18:04:14 by joapedro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,37 +42,78 @@ int	key_release(int key, t_map *map)
 	return (0);
 }
 
+void	move_forward(t_map *map, t_player *player)
+{
+	double	new_x;
+	double	new_y;
+	double	move_speed;
+
+	move_speed = 0.03;
+	new_x = player->posX + player->dirX * move_speed;
+	new_y = player->posY + player->dirY * move_speed;
+
+	if (map->grid[(int)player->posY][(int)new_x] != '1')
+		player->posX = new_x;
+	if (map->grid[(int)new_y][(int)player->posX] != '1')
+		player->posY = new_y;
+}
+
+void	move_backwards(t_map *map, t_player *player)
+{
+	double	new_x;
+	double	new_y;
+	double	move_speed;
+
+	move_speed = 0.03;
+	new_x = player->posX - player->dirX * move_speed;
+	new_y = player->posY - player->dirY * move_speed;
+
+	if (map->grid[(int)player->posY][(int)new_x] != '1')
+		player->posX = new_x;
+	if (map->grid[(int)new_y][(int)player->posX] != '1')
+		player->posY = new_y;
+}
+
+void	move_left(t_map *map, t_player *player)
+{
+	double	new_x;
+	double	new_y;
+	double	move_speed;
+
+	move_speed = 0.03;
+	new_x = player->posX - player->dirX * move_speed;
+	new_y = player->posY + player->dirY * move_speed;
+
+	if (map->grid[(int)player->posY][(int)new_x] != '1')
+		player->posX = new_x;
+	if (map->grid[(int)new_y][(int)player->posX] != '1')
+		player->posY = new_y;
+}
+
+void	move_right(t_map *map, t_player *player)
+{
+	double	new_x;
+	double	new_y;
+	double	move_speed;
+
+	move_speed = 0.03;
+	new_x = player->posX + player->dirX * move_speed;
+	new_y = player->posY - player->dirY * move_speed;
+
+	if (map->grid[(int)player->posY][(int)new_x] != '1')
+		player->posX = new_x;
+	if (map->grid[(int)new_y][(int)player->posX] != '1')
+		player->posY = new_y;
+}
+
 void	player_movement(t_map *map)
 {
-	double mov_speed;
-	int	y;
-	int	x;
-	
-	y = map->player.posY;
-	x = map->player.posX;
-	mov_speed = 0.005;
-	if (map->player.up)
-	{
-		if (map->grid[y][x] == '1')
-			return ;
-		map->player.posY -= mov_speed;
-	}
-	if (map->player.down)
-	{
-		if (map->grid[y + 1][x] == '1')
-			return ;
-		map->player.posY += mov_speed;
-	}
-	if (map->player.left)
-	{
-		if (map->grid[y][x] == '1')
-			return ;
-		map->player.posX -= mov_speed;
-	}
-	if (map->player.right)
-	{
-		if (map->grid[y][x + 1] == '1')
-			return ;
-		map->player.posX += mov_speed;
-	}
+	if (map->player.up == 1)
+		move_forward(map, &map->player);
+	if (map->player.down == 1)
+		move_backwards(map, &map->player);
+	if (map->player.left == 1)
+		move_left(map, &map->player);
+	if (map->player.right == 1)
+		move_right(map, &map->player);
 }
