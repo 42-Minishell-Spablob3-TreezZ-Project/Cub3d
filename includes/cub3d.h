@@ -20,6 +20,9 @@
 # define S 115
 # define D 100
 # define M 109 //Expand and minimize minimap
+# define ESC 65307 //Escape key to close game
+# define LEFT 65361
+# define RIGHT 65363
 
 typedef struct s_img
 {
@@ -115,6 +118,7 @@ void	set_map_dimensions(t_map *map);
 //free memory
 void	free_struct(t_map *map);
 void	free_array(char **array);
+int		close_win(t_map *map);
 
 // error
 void	error_exit(char *message);

@@ -6,7 +6,7 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 15:16:39 by grui-ant          #+#    #+#             */
-/*   Updated: 2026/05/28 19:03:15 by grui-ant         ###   ########.fr       */
+/*   Updated: 2026/06/02 18:28:14 by grui-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int	key_press(int key, t_map *map)
 		map->player.right = 1;
 	if (key == M)
 		map->is_expanded++;
+	if (key == ESC)
+		close_win(map);
 	return (0);
 }
 
