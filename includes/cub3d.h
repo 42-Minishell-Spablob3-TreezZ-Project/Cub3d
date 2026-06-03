@@ -1,7 +1,7 @@
 #ifndef CUB3D_H
 # define CUB3D_H
-# define WIDTH 1280
-# define HEIGHT 720
+# define WIDTH 1920
+# define HEIGHT 1080
 # define TILE 32
 # include "../libft/libft.h"
 # include "get_next_line.h"
@@ -21,6 +21,7 @@
 # define S 115
 # define D 100
 # define M 109 //Expand and minimize minimap
+# define ESC 65307
 # define LEFT 65361
 # define RIGHT 65363
 # define ROTATE_SPEED 0.01

@@ -25,7 +25,7 @@ void	ray_direction(t_player *player, t_ray *ray, int x)
 	ray->deltaDistX = fabs(1 / ray->rayDirX);
 }
 
-void	calculate_step_and_side_distance(t_map *map, t_ray *ray)
+void	 calculate_step_and_side_distance(t_map *map, t_ray *ray)
 {
 	// calcular step e sideDistance inicial 
 	if (ray->rayDirX < 0)
@@ -128,11 +128,15 @@ void	render_ceiling_floor(t_map *map, int x, t_wall *wall)
 void	render_wall(t_map *map, int x)
 {
 	int y;
+	int color;
 
+	color = 0xFF0000;
+	if (map->ray.side == 1)
+		color = 0x880000;
 	y = map->wall.draw_start;
 	while (y < map->wall.draw_end)
 	{
-		img_pix_put(&map->data.img, x, y, 0xFF0000);
+		img_pix_put(&map->data.img, x, y, color);
 		y++;
 	}
 }

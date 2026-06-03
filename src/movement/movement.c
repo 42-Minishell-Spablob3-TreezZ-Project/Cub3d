@@ -12,6 +12,11 @@
 
 #include "cub3d.h"
 
+void	exit_game(t_map *map)
+{
+	mlx_loop_end(map->data.mlx);
+}
+
 int	key_press(int key, t_map *map)
 {
 	if (key == W)
@@ -28,6 +33,8 @@ int	key_press(int key, t_map *map)
 		map->player.rot_left = 1;
 	if (key == RIGHT)
 		map->player.rot_right = 1;
+	if (key == ESC)	
+		exit_game(map);
 	return (0);
 }
 
@@ -56,7 +63,7 @@ void	move_forward(t_map *map, t_player *player, double cos_a, double sin_a)
 	double	new_y;
 	double	move_speed;
 
-	move_speed = 0.03;
+	move_speed = 0.02;
 	new_x = player->posX + cos_a * move_speed;
 	new_y = player->posY + sin_a * move_speed;
 
@@ -72,7 +79,7 @@ void	move_backwards(t_map *map, t_player *player, double cos_a, double sin_a)
 	double	new_y;
 	double	move_speed;
 
-	move_speed = 0.03;
+	move_speed = 0.02;
 	new_x = player->posX - cos_a * move_speed;
 	new_y = player->posY - sin_a * move_speed;
 
@@ -88,7 +95,7 @@ void	move_left(t_map *map, t_player *player, double cos_a, double sin_a)
 	double	new_y;
 	double	move_speed;
 
-	move_speed = 0.03;
+	move_speed = 0.02;
 	new_x = player->posX + sin_a * move_speed;
 	new_y = player->posY - cos_a * move_speed;
 
@@ -104,7 +111,7 @@ void	move_right(t_map *map, t_player *player, double cos_a, double sin_a)
 	double	new_y;
 	double	move_speed;
 
-	move_speed = 0.03;
+	move_speed = 0.02;
 	new_x = player->posX - sin_a * move_speed;
 	new_y = player->posY + cos_a * move_speed;
 
