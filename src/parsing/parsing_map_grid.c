@@ -89,7 +89,7 @@ void	check_map_chars(char **map_grid, t_map *map)
 		i++;
 	}
 	if (map->player_count != 1)
-		error_free_exit(DUPLICATE_PLAYER,map);
+		error_free_exit(WRONG_NR_PLAYER,map);
 }
 
 char	**map_copy(t_map *map)
