@@ -2,6 +2,7 @@
 # define CUB3D_H
 # define WIDTH 1920
 # define HEIGHT 1080
+# define SPEED 0.02
 # define TILE 32
 # include "../libft/libft.h"
 # include "get_next_line.h"
