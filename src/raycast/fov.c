@@ -12,51 +12,21 @@
 
 #include "cub3d.h"
 
-void	set_north_south_dir(t_map *map, char orientation)
-{
-	if (orientation == 'N')
-	{
-		map->player.dirY = -1;
-		map->player.dirX = 0;
-		map->player.planeY = 0;
-		map->player.planeX = 0.66;
- 	}
-	else if (orientation == 'S')
-	{
-		map->player.dirY = 1;
-		map->player.dirX = 0;
-		map->player.planeY = 0;
-		map->player.planeX = -0.66;
- 	}
-}
-
-void	set_east_west_dir(t_map *map, char orientation)
-{
-	if (orientation == 'E')
-	{
-		map->player.dirY = 0;
-		map->player.dirX = 1;
-		map->player.planeY = 0.66;
-		map->player.planeX = 0;
- 	}
-	else if (orientation == 'W')
-	{
-		map->player.dirY = 0;
-		map->player.dirX = -1;
-		map->player.planeY = -0.66;
-		map->player.planeX = 0;
- 	}
-}
-
 void	set_player_direction(t_map *map)
 {	
 	char	orientation;
 
 	orientation = map->player.player_orientation;
-	if(orientation == 'N' || orientation == 'S')
-		set_north_south_dir(map, orientation);
-	else if(orientation == 'E' || orientation == 'W')
-		set_east_west_dir(map, orientation);
+	if (orientation == 'N')
+		map->player.player_angle = -PI / 2;
+	if (orientation == 'S')
+		map->player.player_angle = PI / 2;
+	if(orientation == 'E')
+		map->player.player_angle = 0;
+	if(orientation == 'W')
+		map->player.player_angle = PI;
+	map->player.dirX = cos(map->player.player_angle);
+	map->player.dirY = sin(map->player.player_angle);
+	map->player.planeX = -sin(map->player.player_angle) * 0.66;
+	map->player.planeY = cos(map->player.player_angle) * 0.66;
 }
-
-

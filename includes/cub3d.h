@@ -4,6 +4,7 @@
 # define HEIGHT 1080
 # define SPEED 0.02
 # define TILE 32
+# define PI 3.14159265358979323846
 # include "../libft/libft.h"
 # include "get_next_line.h"
 # include "error_messages.h"

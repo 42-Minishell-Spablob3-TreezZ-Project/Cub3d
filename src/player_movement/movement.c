@@ -69,21 +69,14 @@ void	move_sideways(t_map *map, t_player *player, double cos_a, double sin_a)
 void	rotate_player(t_map *map)
 {
 	if (map->player.rot_left == 1)
-	{
 		map->player.player_angle -= ROTATE_SPEED;
-		map->player.dirX = cos(map->player.player_angle);
-		map->player.dirY = sin(map->player.player_angle);
-		map->player.planeX = -sin(map->player.player_angle) * 0.66;
-		map->player.planeY = cos(map->player.player_angle) * 0.66;
-	}
 	if (map->player.rot_right == 1)
-	{
 		map->player.player_angle += ROTATE_SPEED;
-		map->player.dirX = cos(map->player.player_angle);
-		map->player.dirY = sin(map->player.player_angle);
-		map->player.planeX = -sin(map->player.player_angle) * 0.66;
-		map->player.planeY = cos(map->player.player_angle) * 0.66;
-	}
+
+	map->player.dirX = cos(map->player.player_angle);
+	map->player.dirY = sin(map->player.player_angle);
+	map->player.planeX = -sin(map->player.player_angle) * 0.66;
+	map->player.planeY = cos(map->player.player_angle) * 0.66;
 }
 
 void	player_movement(t_map *map)
