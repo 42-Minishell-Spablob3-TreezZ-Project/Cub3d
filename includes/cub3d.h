@@ -86,6 +86,16 @@ typedef struct	s_player
 	int		rot_right;
 }	t_player;
 
+typedef struct	s_tex
+{
+	void	*img;
+	char	*data;
+	int		width;
+	int		height;
+	int		bpp;
+	int		size_line;
+	int		endian;
+}	t_tex;
 
 typedef struct	s_texture
 {
@@ -107,6 +117,11 @@ typedef struct	s_map
 	t_data		data;
 	t_ray		ray;
 	t_wall		wall;
+	t_texture	textures;
+	t_tex		north_tex;
+	t_tex		south_tex;
+	t_tex		east_tex;
+	t_tex		west_tex;
 	int			floor_rgb[3];
 	int			ceiling_rgb[3];
 	int			is_map;
@@ -118,7 +133,6 @@ typedef struct	s_map
 	int			F_identifier;
 	int			C_identifier;
 	int			type_identifiers;
-	t_texture	textures;
 }	t_map;
 
 
@@ -172,6 +186,7 @@ void	player_movement(t_map *map);
 //render world
 void	render_world(t_map *map);
 void	img_pix_put(t_img *img, int x, int y, int color);
+void	load_textures(t_map *map);
 int		rgb_to_int(int r, int g, int b);
 
 #endif

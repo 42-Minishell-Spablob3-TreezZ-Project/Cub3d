@@ -127,15 +127,55 @@ void	render_ceiling_floor(t_map *map, int x, t_wall *wall)
 }
 void	render_wall(t_map *map, int x)
 {
-	int y;
-	int color;
+	int	y;
+	int	color;
+	t_tex *tex;
+	double wallX;
+	int	texX;
+	int	texY;
+	double	step;
+	//color = 0xFF0000;
+	//if (map->ray.side == 1)
+		//color = 0x880000;
+		
+		//get texture side
 
-	color = 0xFF0000;
-	if (map->ray.side == 1)
-		color = 0x880000;
+	if (map->ray.side == 0)
+	{
+		if (map->ray.rayDirX > 0)
+			tex = &map->west_tex;
+		else
+			tex = &map->east_tex;
+	}
+	else
+	{
+		if (map->ray.rayDirY > 0)
+			tex = &map->north_tex;
+		else
+			tex = &map->south_tex;
+	}
+	//calculate_wall_hit_point
+	if (map->ray.side == 0)
+		wallX = map->player.posY + map->ray.perpWallDist * map->ray.rayDirY;
+	else
+		wallX = map->player.posX + map->ray.perpWallDist * map->ray.rayDirX;
+	wallX -= floor(wallX);
+	texX = (int)(wallX * tex->width);
+	//flip the texture
+	if (map->ray.side == 0 && map->ray.rayDirX > 0)
+		texX = tex->width - texX - 1;
+	if (map->ray.side == 1 && map->ray.rayDirY < 0)
+		texX = tex->width - texX - 1;
+	// start drawing
+	step = (double)tex->height / map->wall.wall_height;
+	double texPos = (map->wall.draw_start - HEIGHT / 2 + map->wall.wall_height / 2) * step;
 	y = map->wall.draw_start;
 	while (y < map->wall.draw_end)
 	{
+		texY = (int)texPos;
+		texPos += step;
+		char * pixel = tex->data + (texY * tex->size_line + texX * (tex->bpp / 8));
+		color = *(unsigned int *)pixel;
 		img_pix_put(&map->data.img, x, y, color);
 		y++;
 	}

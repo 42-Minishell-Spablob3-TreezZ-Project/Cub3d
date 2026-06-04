@@ -128,7 +128,6 @@ void	parsing_config(char *line, t_map *map)
 	}
 }
 
-
 void	parsing(t_map *map)
 {
 	int	i;

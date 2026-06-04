@@ -119,6 +119,7 @@ int	main(int ac, char **av)
 	parsing(map);
 	set_player_direction(map);
 	init_game(map);
+	load_textures(map); // verificar se existem
 	mlx_hook(map->data.mlx_win, 2, KeyPressMask, key_press, map);
 	mlx_hook(map->data.mlx_win, 3, KeyReleaseMask, key_release, map);
 	mlx_loop_hook(map->data.mlx, rendering_loop, map);
