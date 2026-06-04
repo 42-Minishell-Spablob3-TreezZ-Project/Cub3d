@@ -134,11 +134,6 @@ void	render_wall(t_map *map, int x)
 	int	texX;
 	int	texY;
 	double	step;
-	//color = 0xFF0000;
-	//if (map->ray.side == 1)
-		//color = 0x880000;
-		
-		//get texture side
 
 	if (map->ray.side == 0)
 	{
@@ -176,6 +171,9 @@ void	render_wall(t_map *map, int x)
 		texPos += step;
 		char * pixel = tex->data + (texY * tex->size_line + texX * (tex->bpp / 8));
 		color = *(unsigned int *)pixel;
+		// darken the sides of the wall
+		if (map->ray.side == 1)
+			color = (color >> 1) & 8355711;
 		img_pix_put(&map->data.img, x, y, color);
 		y++;
 	}
