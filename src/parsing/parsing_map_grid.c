@@ -6,7 +6,7 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/12 12:40:58 by joapedro          #+#    #+#             */
-/*   Updated: 2026/05/19 12:27:51 by joapedro         ###   ########.fr       */
+/*   Updated: 2026/06/02 14:00:02 by joapedro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,22 +89,44 @@ void	check_map_chars(char **map_grid, t_map *map)
 		i++;
 	}
 	if (map->player_count != 1)
-		error_free_exit(DUPLICATE_PLAYER,map);
+		error_free_exit(WRONG_NR_PLAYER,map);
 }
 
-void	flood_fill(t_map *map, int y, int x)
+char	**map_copy(t_map *map)
 {
+	int		i;
+	char	**tmp;
+
+	i = 0;
+	while (map->grid[i])
+		i++;
+	tmp = ft_calloc((i + 1), sizeof(char *));
+	if (!tmp)
+		return (NULL);
+	i = 0;
+	while (map->grid[i])
+	{
+		tmp[i] = ft_strdup(map->grid[i]);
+		i++;
+	}
+	return (tmp);
+}
+
+void	flood_fill(char **grid, t_map *map, int y, int x)
+{
+//	char *valid = "1FNSEW";
+
 	if (x < 0 || y < 0 || x >= map->width || y >= map->height)
 		error_free_exit(FLOOD_FILL, map);
-	if (map->grid[y][x] == ' ')
+	if (grid[y][x] == ' ')
 		error_free_exit(FLOOD_FILL, map);
-	if (map->grid[y][x] == '1' || map->grid[y][x] == 'F')
+	if (grid[y][x] == '1' || grid[y][x] == 'F')
 		return;
-	map->grid[y][x] = 'F';
-	flood_fill(map, y - 1, x);
-	flood_fill(map, y + 1, x);
-	flood_fill(map, y, x - 1);
-	flood_fill(map, y, x + 1);
+	grid[y][x] = 'F';
+	flood_fill(grid, map, y - 1, x);
+	flood_fill(grid, map, y + 1, x);
+	flood_fill(grid, map, y, x - 1);
+	flood_fill(grid, map, y, x + 1);
 }
 
 int	parsing_map_grid(t_map *map, int start)
@@ -117,12 +139,14 @@ int	parsing_map_grid(t_map *map, int start)
 	//edge_scan(map);
 	set_map_dimensions(map);
 	check_map_chars(map->grid, map); // checkar caracteres validos
-	flood_fill(map, map->player.posY, map->player.posX);
+	char **copy = map_copy(map);
+	flood_fill(copy, map, map->player.posY, map->player.posX);
 	int i = 0;
-	while (map->grid[i])
+	while (copy[i])
 	{
-		printf("%s\n", map->grid[i]);
+		printf("%s\n", copy[i]);
 		i++;
 	}
+	free_array(copy);
 	return (result);
 }
