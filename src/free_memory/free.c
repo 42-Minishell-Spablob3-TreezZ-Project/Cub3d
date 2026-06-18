@@ -37,3 +37,11 @@ void	free_struct(t_map *map)
 	free_textures(&map->textures);
 	free(map);
 }
+
+int	close_win(t_map *map)
+{
+	mlx_destroy_window(map->data.mlx, map->data.mlx_win);
+	mlx_destroy_display(map->data.mlx);
+	free_struct(map);
+	exit (0);
+}

@@ -6,7 +6,7 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 10:25:28 by joapedro          #+#    #+#             */
-/*   Updated: 2026/06/02 15:33:51 by joapedro         ###   ########.fr       */
+/*   Updated: 2026/06/18 13:27:59 by grui-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ int	main(int ac, char **av)
 	load_textures(map);
 	mlx_hook(map->data.mlx_win, 2, KeyPressMask, key_press, map);
 	mlx_hook(map->data.mlx_win, 3, KeyReleaseMask, key_release, map);
+	mlx_hook(map->data.mlx_win, 17, 0, &close_win, map);
 	mlx_loop_hook(map->data.mlx, rendering_loop, map);
 	mlx_loop(map->data.mlx);
 	free_struct(map);

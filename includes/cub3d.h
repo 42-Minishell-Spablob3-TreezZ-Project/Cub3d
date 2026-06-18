@@ -23,7 +23,7 @@
 # define S 115
 # define D 100
 # define M 109 //Expand and minimize minimap
-# define ESC 65307
+# define ESC 65307 //Escape key to close game
 # define LEFT 65361
 # define RIGHT 65363
 # define ROTATE_SPEED 0.01
@@ -162,6 +162,7 @@ void	set_map_dimensions(t_map *map);
 //free memory
 void	free_struct(t_map *map);
 void	free_array(char **array);
+int		close_win(t_map *map);
 
 // error
 void	error_exit(char *message);
@@ -173,6 +174,12 @@ void	error_free_array_and_struct(char *message, t_map *map, char **array);
 void	render_minimap(t_map *map, int size, int color);
 void	draw_square(t_img *img, int x, int y, int size, int color);
 int		rendering_loop(t_map *map);
+
+//expanded minimap
+int		size_scales(int size);
+int		check_dims(t_map *map);
+void	expanded_minimap(t_map *map, int size);
+void	clear_expanded(t_map *map, int size);
 
 //raycasting
 void	set_player_direction(t_map *map);
