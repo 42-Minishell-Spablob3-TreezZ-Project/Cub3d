@@ -6,7 +6,7 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/12 12:40:58 by joapedro          #+#    #+#             */
-/*   Updated: 2026/05/26 15:37:11 by grui-ant         ###   ########.fr       */
+/*   Updated: 2026/06/02 14:00:02 by joapedro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ void	check_map_chars(char **map_grid, t_map *map)
 				error_free_exit(INVALID_CHAR,map);
 			if(is_player(map_grid[i][j], map))
 			{
-				map->player.posY = (double)i; //set player position in the center
-				map->player.posX = (double)j;
+				map->player.posY = (double)i + 0.5; //set player position in the center
+				map->player.posX = (double)j + 0.5;
 				map->player_count++;
 			}
 			j++;
@@ -89,7 +89,7 @@ void	check_map_chars(char **map_grid, t_map *map)
 		i++;
 	}
 	if (map->player_count != 1)
-		error_free_exit(DUPLICATE_PLAYER,map);
+		error_free_exit(WRONG_NR_PLAYER,map);
 }
 
 char	**map_copy(t_map *map)

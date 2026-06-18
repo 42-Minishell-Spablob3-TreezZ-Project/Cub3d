@@ -15,7 +15,7 @@ RM = rm -f
 MLX_LIB = minilibx-linux/libmlx_Linux.a
 LIBFT = libft/libft.a
 
-CFLAGS = -Wall -Wextra -Werror -Iincludes -Iminilibx-linux -g
+CFLAGS = -Wall -Wextra -Werror -Wno-incompatible-pointer-types -Iincludes -Iminilibx-linux -g
 
 MLX_FLAGS = -Lminilibx-linux -lmlx_Linux -L/usr/lib/X11 -lXext -lX11 -lm
 

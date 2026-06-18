@@ -1,12 +1,15 @@
 #ifndef CUB3D_H
 # define CUB3D_H
-# define WIDTH 1280
-# define HEIGHT 720
+# define WIDTH 1920
+# define HEIGHT 1080
+# define SPEED 0.02
 # define TILE 32
+# define PI 3.14159265358979323846
 # include "../libft/libft.h"
 # include "get_next_line.h"
 # include "error_messages.h"
 # include <stdio.h>
+# include <math.h>
 # include <fcntl.h>
 # include <unistd.h>
 # include <sys/stat.h>
@@ -23,6 +26,7 @@
 # define ESC 65307 //Escape key to close game
 # define LEFT 65361
 # define RIGHT 65363
+# define ROTATE_SPEED 0.01
 
 typedef struct s_img
 {
@@ -40,6 +44,30 @@ typedef struct s_data
 	t_img	img;
 }	t_data;
 
+typedef struct s_ray
+{
+	double	deltaDistY;
+	double	deltaDistX;
+	double	rayDirX;
+	double	rayDirY;
+	int		mapX; // posicao da celula em que estamos
+	int		mapY;
+	double	sideDistX; // comprimento do raio desde a posicao do player ate proxima x or y-side
+	double	sideDistY;
+	int		side;
+	int		stepX;
+	int		stepY;
+	double	perpWallDist;
+}	t_ray;
+
+typedef struct	s_wall
+{
+	int	wall_height;
+	int	draw_start;
+	int	draw_end;
+
+}	t_wall;
+
 typedef struct	s_player
 {
 	char	player_orientation;
@@ -49,13 +77,25 @@ typedef struct	s_player
 	double	dirY;
 	double	planeY;
 	double	planeX;
-	//MovementKeys
+	double	player_angle;
 	int		up;
 	int		down;
 	int		left;
 	int		right;
+	int		rot_left;
+	int		rot_right;
 }	t_player;
 
+typedef struct	s_tex
+{
+	void	*img;
+	char	*data;
+	int		width;
+	int		height;
+	int		bpp;
+	int		size_line;
+	int		endian;
+}	t_tex;
 
 typedef struct	s_texture
 {
@@ -75,8 +115,13 @@ typedef struct	s_map
 	int			is_expanded;
 	t_player	player;
 	t_data		data;
-/* 	int			player_x;
-	int			player_y; */
+	t_ray		ray;
+	t_wall		wall;
+	t_texture	textures;
+	t_tex		north_tex;
+	t_tex		south_tex;
+	t_tex		east_tex;
+	t_tex		west_tex;
 	int			floor_rgb[3];
 	int			ceiling_rgb[3];
 	int			is_map;
@@ -88,7 +133,6 @@ typedef struct	s_map
 	int			F_identifier;
 	int			C_identifier;
 	int			type_identifiers;
-	t_texture	textures;
 }	t_map;
 
 
@@ -144,6 +188,12 @@ void	set_player_direction(t_map *map);
 int		key_press(int key, t_map *map);
 int		key_release(int key, t_map *map);
 void	player_movement(t_map *map);
-void	clear_player_image(t_map *map, int size);
+//void	clear_player_image(t_map *map, int size);
+
+//render world
+void	render_world(t_map *map);
+void	img_pix_put(t_img *img, int x, int y, int color);
+void	load_textures(t_map *map);
+int		rgb_to_int(int r, int g, int b);
 
 #endif
