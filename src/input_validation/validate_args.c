@@ -6,7 +6,7 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 10:25:55 by joapedro          #+#    #+#             */
-/*   Updated: 2026/05/07 14:55:57 by joapedro         ###   ########.fr       */
+/*   Updated: 2026/06/18 17:18:50 by grui-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	is_directory(char *file_name)
 		return ;
 	if (S_ISDIR(sb.st_mode))
 		error_exit(DIRECTORY);
-} 
+}
 
 int	check_fd(char *str)
 {

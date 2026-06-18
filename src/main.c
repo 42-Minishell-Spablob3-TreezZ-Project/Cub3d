@@ -6,7 +6,7 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 10:25:28 by joapedro          #+#    #+#             */
-/*   Updated: 2026/06/18 13:27:59 by grui-ant         ###   ########.fr       */
+/*   Updated: 2026/06/18 17:21:05 by grui-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 	draw_square(&map->data.img, map->player.posX * size, map->player.posY * size, size, 0x000000);
 } */
 
-void init_game(t_map *map)
+void	init_game(t_map *map)
 {
 	map->data.mlx = mlx_init(); // criar funcao para iniciar janela/jogo
 	map->data.mlx_win = mlx_new_window(map->data.mlx, WIDTH, HEIGHT, "cub3D");

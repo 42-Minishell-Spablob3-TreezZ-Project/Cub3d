@@ -6,20 +6,20 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/12 12:40:58 by joapedro          #+#    #+#             */
-/*   Updated: 2026/06/02 14:00:02 by joapedro         ###   ########.fr       */
+/*   Updated: 2026/06/18 16:57:10 by grui-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 void	normalize_map(t_map *map)
-{	
+{
 	size_t	longest_line;
 	int		size;
 	char	*str;
 	char	*tmp;
 	int		i;
-	
+
 	longest_line = get_longest_line(map);
 	i = 0;
 	while (map->grid[i])
@@ -40,15 +40,15 @@ void	normalize_map(t_map *map)
 
 int	fill_map_grid_array(t_map *map, int start)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	*line;
 
 	i = start;
 	while (map->map_array[i])
 		i++;
 	map->grid = ft_calloc((i - start) + 1, sizeof(char *));
-	if(!map->grid)
+	if (!map->grid)
 		return (-1);
 	j = 0;
 	while (map->map_array[start])
@@ -68,19 +68,19 @@ void	check_map_chars(char **map_grid, t_map *map)
 	char	*valid_chars;
 	int		i;
 	int		j;
-	
+
 	valid_chars = " 01NSWE";
 	i = 0;
-	while(map_grid[i])
+	while (map_grid[i])
 	{
 		j = 0;
 		while (map_grid[i][j])
 		{
-			if(!ft_strchr(valid_chars, map_grid[i][j]))
-				error_free_exit(INVALID_CHAR,map);
-			if(is_player(map_grid[i][j], map))
+			if (!ft_strchr(valid_chars, map_grid[i][j]))
+				error_free_exit(INVALID_CHAR, map);
+			if (is_player(map_grid[i][j], map))
 			{
-				map->player.posY = (double)i + 0.5; //set player position in the center
+				map->player.posY = (double)i + 0.5;
 				map->player.posX = (double)j + 0.5;
 				map->player_count++;
 			}
@@ -89,7 +89,7 @@ void	check_map_chars(char **map_grid, t_map *map)
 		i++;
 	}
 	if (map->player_count != 1)
-		error_free_exit(WRONG_NR_PLAYER,map);
+		error_free_exit(WRONG_NR_PLAYER, map);
 }
 
 char	**map_copy(t_map *map)
@@ -112,36 +112,21 @@ char	**map_copy(t_map *map)
 	return (tmp);
 }
 
-void	flood_fill(char **grid, t_map *map, int y, int x)
-{
-//	char *valid = "1FNSEW";
-
-	if (x < 0 || y < 0 || x >= map->width || y >= map->height)
-		error_free_exit(FLOOD_FILL, map);
-	if (grid[y][x] == ' ')
-		error_free_exit(FLOOD_FILL, map);
-	if (grid[y][x] == '1' || grid[y][x] == 'F')
-		return;
-	grid[y][x] = 'F';
-	flood_fill(grid, map, y - 1, x);
-	flood_fill(grid, map, y + 1, x);
-	flood_fill(grid, map, y, x - 1);
-	flood_fill(grid, map, y, x + 1);
-}
-
 int	parsing_map_grid(t_map *map, int start)
 {
-	int	result;
-	
-	map->is_map = 1; //indicar que o map_grid comecou.
-	result = fill_map_grid_array(map, start); //preencher grid e retornar quantas vezes o i andou.
-	normalize_map(map); //preparar mapa para floodfill (rectangulizar)
+	int		result;
+	char	**copy;
+	int		i;
+
+	map->is_map = 1;
+	result = fill_map_grid_array(map, start);
+	normalize_map(map);
 	//edge_scan(map);
 	set_map_dimensions(map);
-	check_map_chars(map->grid, map); // checkar caracteres validos
-	char **copy = map_copy(map);
+	check_map_chars(map->grid, map);
+	copy = map_copy(map);
 	flood_fill(copy, map, map->player.posY, map->player.posX);
-	int i = 0;
+	i = 0;
 	while (copy[i])
 	{
 		printf("%s\n", copy[i]);

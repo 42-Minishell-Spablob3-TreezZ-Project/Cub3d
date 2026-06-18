@@ -1,4 +1,14 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   key_handler.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: grui-ant <grui-ant@student.42porto.com>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/18 14:23:04 by grui-ant          #+#    #+#             */
+/*   Updated: 2026/06/18 14:27:06 by grui-ant         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "cub3d.h"
 
@@ -23,7 +33,7 @@ int	key_press(int key, t_map *map)
 		map->player.rot_left = 1;
 	if (key == RIGHT)
 		map->player.rot_right = 1;
-	if (key == ESC)	
+	if (key == ESC)
 		exit_game(map);
 	return (0);
 }

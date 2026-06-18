@@ -6,7 +6,7 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 11:03:15 by joapedro          #+#    #+#             */
-/*   Updated: 2026/05/12 12:41:50 by joapedro         ###   ########.fr       */
+/*   Updated: 2026/06/18 17:02:44 by grui-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,28 +16,8 @@
 //tem de estar rodeado por paredes (1);
 //separar config do mapa
 //messagem de erro: "Error\n" seguida de mensagem informativa do erro
-//parsing das texturas: verificar se o ficheiro existe, se pode ser aberto, se termina em .xpm (extensao)
-
-
-void	check_identifier(char *line, t_map *map)
-{
-	while (is_space(*line))
-		line++;
-	if (ft_strncmp(line, "NO ", 3) == 0)
-		check_duplicated(map, map->NO_identifier++);
-	else if (ft_strncmp(line, "SO ", 3) == 0)
-		check_duplicated(map, map->SO_identifier++);
-	else if (ft_strncmp(line, "WE ", 3) == 0)
-		check_duplicated(map, map->WE_identifier++);
-	else if (ft_strncmp(line, "EA ", 3) == 0)
-		check_duplicated(map, map->EA_identifier++);
-	else if (ft_strncmp(line, "F ", 2) == 0)
-		check_duplicated(map, map->F_identifier++);
-	else if (ft_strncmp(line, "C ", 2) == 0)
-		check_duplicated(map, map->C_identifier++);
-	else if (map->type_identifiers < 6)
-		error_free_exit(MISCONFIGURATION, map);
-}
+//parsing das texturas: verificar se o ficheiro existe,
+//se pode ser aberto, se termina em .xpm (extensao)
 
 char	*check_path_texture(char *line, t_map *map)
 {
@@ -45,7 +25,7 @@ char	*check_path_texture(char *line, t_map *map)
 
 	while (!is_space(*line))
 		line++;
-	path = ft_strtrim(line, " \n\t"); // trim do espacos tabs e newline
+	path = ft_strtrim(line, " \n\t");
 	if (!check_fd(path))
 	{
 		free(path);
@@ -58,13 +38,13 @@ char	*check_path_texture(char *line, t_map *map)
 
 int	check_if_valid_number(char *line)
 {
-	int	i;
+	int		i;
 	char	*value;
 
 	value = ft_strtrim(line, " ");
 	i = 0;
 	while (value[i])
-	{	
+	{
 		if (value[i] == '-' || value[i] == '+')
 			i++;
 		if (!ft_isdigit(value[i]))
@@ -85,7 +65,7 @@ void	check_rgb_values(char *line, int rgb[3], t_map *map)
 
 	while (!is_space(*line))
 		line++;
-	line = ft_strtrim(line, " \n\t"); // trim do espacos tabs e newline
+	line = ft_strtrim(line, " \n\t");
 	split = ft_split(line, ',');
 	free(line);
 	i = 0;
@@ -121,7 +101,7 @@ void	parsing_config(char *line, t_map *map)
 			map->textures.NO = path;
 		else if (line[0] == 'S')
 			map->textures.SO = path;
-		else if (line[0]== 'W')
+		else if (line[0] == 'W')
 			map->textures.WE = path;
 		else if (line[0] == 'E')
 			map->textures.EA = path;
@@ -131,22 +111,22 @@ void	parsing_config(char *line, t_map *map)
 void	parsing(t_map *map)
 {
 	int	i;
-	
+
 	i = 0;
-	while(map->map_array[i])
+	while (map->map_array[i])
 	{
 		if (is_empty_line(map->map_array[i]))
 		{
 			i++;
-			continue;
+			continue ;
 		}
-			if (map->type_identifiers < 6)
-				parsing_config(map->map_array[i], map);
-			else
-			{
-				i = parsing_map_grid(map, i);
-				break;
-			}
+		if (map->type_identifiers < 6)
+			parsing_config(map->map_array[i], map);
+		else
+		{
+			i = parsing_map_grid(map, i);
+			break ;
+		}
 		i++;
 	}
 	if (!map->is_map)

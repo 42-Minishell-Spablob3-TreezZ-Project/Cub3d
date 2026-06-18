@@ -6,11 +6,11 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 10:58:00 by joapedro          #+#    #+#             */
-/*   Updated: 2026/05/12 15:20:42 by joapedro         ###   ########.fr       */
+/*   Updated: 2026/06/18 17:04:14 by grui-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"cub3d.h"
+#include "cub3d.h"
 
 int	is_space(char c)
 {
@@ -22,7 +22,7 @@ int	is_empty_line(char *str)
 	while (*str)
 	{
 		if (*str != ' ' && *str != '\t' && *str != '\n')
-		return (0);
+			return (0);
 		str++;
 	}
 	return (1);
@@ -54,4 +54,24 @@ void	check_file_extension_xpm(char *path, t_map *map)
 		free(path);
 		error_free_exit(WRONG_EXTENSION, map);
 	}
+}
+
+void	check_identifier(char *line, t_map *map)
+{
+	while (is_space(*line))
+		line++;
+	if (ft_strncmp(line, "NO ", 3) == 0)
+		check_duplicated(map, map->NO_identifier++);
+	else if (ft_strncmp(line, "SO ", 3) == 0)
+		check_duplicated(map, map->SO_identifier++);
+	else if (ft_strncmp(line, "WE ", 3) == 0)
+		check_duplicated(map, map->WE_identifier++);
+	else if (ft_strncmp(line, "EA ", 3) == 0)
+		check_duplicated(map, map->EA_identifier++);
+	else if (ft_strncmp(line, "F ", 2) == 0)
+		check_duplicated(map, map->F_identifier++);
+	else if (ft_strncmp(line, "C ", 2) == 0)
+		check_duplicated(map, map->C_identifier++);
+	else if (map->type_identifiers < 6)
+		error_free_exit(MISCONFIGURATION, map);
 }

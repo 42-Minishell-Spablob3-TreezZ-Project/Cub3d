@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: grui-ant <grui-ant@student.42porto.com>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/18 14:26:13 by grui-ant          #+#    #+#             */
+/*   Updated: 2026/06/18 16:18:18 by grui-ant         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 # define WIDTH 1920
@@ -157,6 +169,8 @@ int		parsing_map_grid(t_map *map, int start);
 int		is_player(char c, t_map *map);
 int		get_longest_line(t_map *map);
 void	set_map_dimensions(t_map *map);
+void	flood_fill(char **grid, t_map *map, int y, int x);
+void	check_identifier(char *line, t_map *map);
 //void	edge_scan(t_map *map);
 
 //free memory
@@ -183,6 +197,15 @@ void	clear_expanded(t_map *map, int size);
 
 //raycasting
 void	set_player_direction(t_map *map);
+void	ray_direction(t_player *player, t_ray *ray, int x);
+void	calculate_step_and_side_distance(t_map *map, t_ray *ray);
+void	dda(t_map *map, t_ray *ray);
+void	wall_distance(t_ray *ray);
+void	get_wall_height(t_map *map, t_ray *ray, t_wall *wall);
+int 	rgb_to_int(int r, int g, int b);
+void	render_ceiling_floor(t_map *map, int x, t_wall *wall);
+void	render_wall(t_map *map, int x);
+void	render_world(t_map *map);
 
 //Movement
 int		key_press(int key, t_map *map);

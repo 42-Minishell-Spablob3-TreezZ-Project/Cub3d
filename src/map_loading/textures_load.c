@@ -1,18 +1,29 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   textures_load.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: grui-ant <grui-ant@student.42porto.com>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/18 14:24:18 by grui-ant          #+#    #+#             */
+/*   Updated: 2026/06/18 17:18:25 by grui-ant         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "cub3d.h"
 
 void	load_tex(t_map *map, t_tex *tex, char *path)
 {
 	printf("Loading texture: %s\n", path);
-	tex->img = mlx_xpm_file_to_image(map->data.mlx, path, &tex->width, &tex->height);
+	tex->img = mlx_xpm_file_to_image(map->data.mlx, path, \
+&tex->width, &tex->height);
 	if (!tex->img)
 	{
 		printf("failed to load texture");
 		return ;
 	}
-	tex->data = mlx_get_data_addr(tex->img, &tex->bpp, 
-			&tex->size_line, &tex->endian);
+	tex->data = mlx_get_data_addr(tex->img, &tex->bpp, \
+&tex->size_line, &tex->endian);
 	if (!tex->data)
 		return ;
 }
