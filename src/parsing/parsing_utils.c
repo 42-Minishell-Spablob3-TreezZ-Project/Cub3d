@@ -6,7 +6,7 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 10:58:00 by joapedro          #+#    #+#             */
-/*   Updated: 2026/06/18 17:04:14 by grui-ant         ###   ########.fr       */
+/*   Updated: 2026/06/25 13:46:27 by grui-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,17 +61,17 @@ void	check_identifier(char *line, t_map *map)
 	while (is_space(*line))
 		line++;
 	if (ft_strncmp(line, "NO ", 3) == 0)
-		check_duplicated(map, map->NO_identifier++);
+		check_duplicated(map, map->no_identifier++);
 	else if (ft_strncmp(line, "SO ", 3) == 0)
-		check_duplicated(map, map->SO_identifier++);
+		check_duplicated(map, map->so_identifier++);
 	else if (ft_strncmp(line, "WE ", 3) == 0)
-		check_duplicated(map, map->WE_identifier++);
+		check_duplicated(map, map->we_identifier++);
 	else if (ft_strncmp(line, "EA ", 3) == 0)
-		check_duplicated(map, map->EA_identifier++);
+		check_duplicated(map, map->ea_identifier++);
 	else if (ft_strncmp(line, "F ", 2) == 0)
-		check_duplicated(map, map->F_identifier++);
+		check_duplicated(map, map->f_identifier++);
 	else if (ft_strncmp(line, "C ", 2) == 0)
-		check_duplicated(map, map->C_identifier++);
+		check_duplicated(map, map->c_identifier++);
 	else if (map->type_identifiers < 6)
 		error_free_exit(MISCONFIGURATION, map);
 }

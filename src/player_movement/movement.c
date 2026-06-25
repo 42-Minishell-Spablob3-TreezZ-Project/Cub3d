@@ -6,7 +6,7 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 15:16:39 by grui-ant          #+#    #+#             */
-/*   Updated: 2026/06/18 14:22:36 by grui-ant         ###   ########.fr       */
+/*   Updated: 2026/06/25 14:00:55 by grui-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,21 @@ double sin_a)
 
 	if (map->player.up == 1)
 	{
-		new_x = player->posX + cos_a * SPEED;
-		new_y = player->posY + sin_a * SPEED;
-		if (map->grid[(int)player->posY][(int)new_x] != '1')
-			player->posX = new_x;
-		if (map->grid[(int)new_y][(int)player->posX] != '1')
-			player->posY = new_y;
+		new_x = player->pos_x + cos_a * SPEED;
+		new_y = player->pos_y + sin_a * SPEED;
+		if (map->grid[(int)player->pos_y][(int)new_x] != '1')
+			player->pos_x = new_x;
+		if (map->grid[(int)new_y][(int)player->pos_x] != '1')
+			player->pos_y = new_y;
 	}
 	if (map->player.down == 1)
 	{
-		new_x = player->posX - cos_a * SPEED;
-		new_y = player->posY - sin_a * SPEED;
-		if (map->grid[(int)player->posY][(int)new_x] != '1')
-			player->posX = new_x;
-		if (map->grid[(int)new_y][(int)player->posX] != '1')
-			player->posY = new_y;
+		new_x = player->pos_x - cos_a * SPEED;
+		new_y = player->pos_y - sin_a * SPEED;
+		if (map->grid[(int)player->pos_y][(int)new_x] != '1')
+			player->pos_x = new_x;
+		if (map->grid[(int)new_y][(int)player->pos_x] != '1')
+			player->pos_y = new_y;
 	}
 }
 
@@ -45,21 +45,21 @@ void	move_sideways(t_map *map, t_player *player, double cos_a, double sin_a)
 
 	if (map->player.left == 1)
 	{
-		new_x = player->posX + sin_a * SPEED;
-		new_y = player->posY - cos_a * SPEED;
-		if (map->grid[(int)player->posY][(int)new_x] != '1')
-			player->posX = new_x;
-		if (map->grid[(int)new_y][(int)player->posX] != '1')
-			player->posY = new_y;
+		new_x = player->pos_x + sin_a * SPEED;
+		new_y = player->pos_y - cos_a * SPEED;
+		if (map->grid[(int)player->pos_y][(int)new_x] != '1')
+			player->pos_x = new_x;
+		if (map->grid[(int)new_y][(int)player->pos_x] != '1')
+			player->pos_y = new_y;
 	}
 	if (map->player.right == 1)
 	{
-		new_x = player->posX - sin_a * SPEED;
-		new_y = player->posY + cos_a * SPEED;
-		if (map->grid[(int)player->posY][(int)new_x] != '1')
-			player->posX = new_x;
-		if (map->grid[(int)new_y][(int)player->posX] != '1')
-			player->posY = new_y;
+		new_x = player->pos_x - sin_a * SPEED;
+		new_y = player->pos_y + cos_a * SPEED;
+		if (map->grid[(int)player->pos_y][(int)new_x] != '1')
+			player->pos_x = new_x;
+		if (map->grid[(int)new_y][(int)player->pos_x] != '1')
+			player->pos_y = new_y;
 	}
 }
 
@@ -69,10 +69,10 @@ void	rotate_player(t_map *map)
 		map->player.player_angle -= ROTATE_SPEED;
 	if (map->player.rot_right == 1)
 		map->player.player_angle += ROTATE_SPEED;
-	map->player.dirX = cos(map->player.player_angle);
-	map->player.dirY = sin(map->player.player_angle);
-	map->player.planeX = -sin(map->player.player_angle) * 0.66;
-	map->player.planeY = cos(map->player.player_angle) * 0.66;
+	map->player.dir_x = cos(map->player.player_angle);
+	map->player.dir_y = sin(map->player.player_angle);
+	map->player.plane_x = -sin(map->player.player_angle) * 0.66;
+	map->player.plane_y = cos(map->player.player_angle) * 0.66;
 }
 
 void	player_movement(t_map *map)

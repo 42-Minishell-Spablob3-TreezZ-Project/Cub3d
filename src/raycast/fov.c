@@ -6,7 +6,7 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 09:37:32 by joapedro          #+#    #+#             */
-/*   Updated: 2026/06/18 16:54:22 by grui-ant         ###   ########.fr       */
+/*   Updated: 2026/06/25 13:48:43 by grui-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	set_player_direction(t_map *map)
 		map->player.player_angle = 0;
 	if (orientation == 'W')
 		map->player.player_angle = PI;
-	map->player.dirX = cos(map->player.player_angle);
-	map->player.dirY = sin(map->player.player_angle);
-	map->player.planeX = -sin(map->player.player_angle) * 0.66;
-	map->player.planeY = cos(map->player.player_angle) * 0.66;
+	map->player.dir_x = cos(map->player.player_angle);
+	map->player.dir_y = sin(map->player.player_angle);
+	map->player.plane_x = -sin(map->player.player_angle) * 0.66;
+	map->player.plane_y = cos(map->player.player_angle) * 0.66;
 }

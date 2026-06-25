@@ -6,7 +6,7 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/12 12:40:58 by joapedro          #+#    #+#             */
-/*   Updated: 2026/06/18 16:57:10 by grui-ant         ###   ########.fr       */
+/*   Updated: 2026/06/25 13:48:21 by grui-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ void	check_map_chars(char **map_grid, t_map *map)
 				error_free_exit(INVALID_CHAR, map);
 			if (is_player(map_grid[i][j], map))
 			{
-				map->player.posY = (double)i + 0.5;
-				map->player.posX = (double)j + 0.5;
+				map->player.pos_y = (double)i + 0.5;
+				map->player.pos_x = (double)j + 0.5;
 				map->player_count++;
 			}
 			j++;
@@ -125,7 +125,7 @@ int	parsing_map_grid(t_map *map, int start)
 	set_map_dimensions(map);
 	check_map_chars(map->grid, map);
 	copy = map_copy(map);
-	flood_fill(copy, map, map->player.posY, map->player.posX);
+	flood_fill(copy, map, map->player.pos_y, map->player.pos_x);
 	i = 0;
 	while (copy[i])
 	{

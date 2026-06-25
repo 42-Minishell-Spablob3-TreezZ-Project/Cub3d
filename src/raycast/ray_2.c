@@ -6,7 +6,7 @@
 /*   By: grui-ant <grui-ant@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 15:47:58 by grui-ant          #+#    #+#             */
-/*   Updated: 2026/06/18 17:10:04 by grui-ant         ###   ########.fr       */
+/*   Updated: 2026/06/25 13:55:57 by grui-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,27 +51,27 @@ void	render_wall(t_map *map, int x)
 
 	if (map->ray.side == 0)
 	{
-		if (map->ray.rayDirX > 0)
+		if (map->ray.ray_dir_x > 0)
 			tex = &map->west_tex;
 		else
 			tex = &map->east_tex;
 	}
 	else
 	{
-		if (map->ray.rayDirY > 0)
+		if (map->ray.ray_dir_y > 0)
 			tex = &map->north_tex;
 		else
 			tex = &map->south_tex;
 	}
 	if (map->ray.side == 0)
-		wall_x = map->player.posY + map->ray.perpWallDist * map->ray.rayDirY;
+		wall_x = map->player.pos_y + map->ray.perp_wall_dist * map->ray.ray_dir_y;
 	else
-		wall_x = map->player.posX + map->ray.perpWallDist * map->ray.rayDirX;
+		wall_x = map->player.pos_x + map->ray.perp_wall_dist * map->ray.ray_dir_x;
 	wall_x -= floor(wall_x);
 	tex_x = (int)(wall_x * tex->width);
-	if (map->ray.side == 0 && map->ray.rayDirX > 0)
+	if (map->ray.side == 0 && map->ray.ray_dir_x > 0)
 		tex_x = tex->width - tex_x - 1;
-	if (map->ray.side == 1 && map->ray.rayDirY < 0)
+	if (map->ray.side == 1 && map->ray.ray_dir_y < 0)
 		tex_x = tex->width - tex_x - 1;
 	step = (double)tex->height / map->wall.wall_height;
 	tex_pos = (map->wall.draw_start - HEIGHT / 2 + map->wall.wall_height / 2) \

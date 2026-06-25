@@ -6,7 +6,7 @@
 /*   By: grui-ant <grui-ant@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 14:26:13 by grui-ant          #+#    #+#             */
-/*   Updated: 2026/06/18 16:18:18 by grui-ant         ###   ########.fr       */
+/*   Updated: 2026/06/25 13:43:20 by grui-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,21 +58,21 @@ typedef struct s_data
 
 typedef struct s_ray
 {
-	double	deltaDistY;
-	double	deltaDistX;
-	double	rayDirX;
-	double	rayDirY;
-	int		mapX; // posicao da celula em que estamos
-	int		mapY;
-	double	sideDistX; // comprimento do raio desde a posicao do player ate proxima x or y-side
-	double	sideDistY;
+	double	delta_dist_y;
+	double	delta_dist_x;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	int		map_x;
+	int		map_y;
+	double	side_dist_x; // distance between player pos and closest x or y
+	double	side_dist_y;
 	int		side;
-	int		stepX;
-	int		stepY;
-	double	perpWallDist;
+	int		step_x;
+	int		step_y;
+	double	perp_wall_dist;
 }	t_ray;
 
-typedef struct	s_wall
+typedef struct s_wall
 {
 	int	wall_height;
 	int	draw_start;
@@ -80,15 +80,15 @@ typedef struct	s_wall
 
 }	t_wall;
 
-typedef struct	s_player
+typedef struct s_player
 {
 	char	player_orientation;
-	double	posX;
-	double	posY;
-	double	dirX;
-	double	dirY;
-	double	planeY;
-	double	planeX;
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_y;
+	double	plane_x;
 	double	player_angle;
 	int		up;
 	int		down;
@@ -98,7 +98,7 @@ typedef struct	s_player
 	int		rot_right;
 }	t_player;
 
-typedef struct	s_tex
+typedef struct s_tex
 {
 	void	*img;
 	char	*data;
@@ -109,16 +109,16 @@ typedef struct	s_tex
 	int		endian;
 }	t_tex;
 
-typedef struct	s_texture
+typedef struct s_texture
 {
-	char	*NO;
-	char	*SO;
-	char	*WE;
-	char	*EA;
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
 
 }	t_texture;
 
-typedef struct	s_map
+typedef struct s_map
 {
 	char		**map_array;
 	char		**grid;
@@ -138,15 +138,14 @@ typedef struct	s_map
 	int			ceiling_rgb[3];
 	int			is_map;
 	int			player_count;
-	int			NO_identifier;
-	int			SO_identifier;
-	int			WE_identifier;
-	int			EA_identifier;
-	int			F_identifier;
-	int			C_identifier;
+	int			no_identifier;
+	int			so_identifier;
+	int			we_identifier;
+	int			ea_identifier;
+	int			f_identifier;
+	int			c_identifier;
 	int			type_identifiers;
 }	t_map;
-
 
 // input validation
 void	check_args(char *file_name);
@@ -183,7 +182,6 @@ void	error_exit(char *message);
 void	error_free_exit(char *message, t_map *map);
 void	error_free_array_and_struct(char *message, t_map *map, char **array);
 
-
 //minimap
 void	render_minimap(t_map *map, int size, int color);
 void	draw_square(t_img *img, int x, int y, int size, int color);
@@ -202,7 +200,7 @@ void	calculate_step_and_side_distance(t_map *map, t_ray *ray);
 void	dda(t_map *map, t_ray *ray);
 void	wall_distance(t_ray *ray);
 void	get_wall_height(t_map *map, t_ray *ray, t_wall *wall);
-int 	rgb_to_int(int r, int g, int b);
+int		rgb_to_int(int r, int g, int b);
 void	render_ceiling_floor(t_map *map, int x, t_wall *wall);
 void	render_wall(t_map *map, int x);
 void	render_world(t_map *map);

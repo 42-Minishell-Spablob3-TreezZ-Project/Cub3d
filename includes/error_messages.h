@@ -6,10 +6,9 @@
 /*   By: grui-ant <grui-ant@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 14:25:56 by grui-ant          #+#    #+#             */
-/*   Updated: 2026/06/18 14:26:05 by grui-ant         ###   ########.fr       */
+/*   Updated: 2026/06/25 13:35:41 by grui-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef ERROR_MESSAGES_H
 # define ERROR_MESSAGES_H
@@ -30,4 +29,3 @@
 # define WRONG_NR_PLAYER "Expected exactly one player."
 # define FLOOD_FILL "Invalid map."
 #endif
-

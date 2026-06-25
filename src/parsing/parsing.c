@@ -6,7 +6,7 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 11:03:15 by joapedro          #+#    #+#             */
-/*   Updated: 2026/06/18 17:02:44 by grui-ant         ###   ########.fr       */
+/*   Updated: 2026/06/25 13:47:07 by grui-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,13 +98,13 @@ void	parsing_config(char *line, t_map *map)
 	{
 		path = check_path_texture(line, map);
 		if (line[0] == 'N')
-			map->textures.NO = path;
+			map->textures.no = path;
 		else if (line[0] == 'S')
-			map->textures.SO = path;
+			map->textures.so = path;
 		else if (line[0] == 'W')
-			map->textures.WE = path;
+			map->textures.we = path;
 		else if (line[0] == 'E')
-			map->textures.EA = path;
+			map->textures.ea = path;
 	}
 }
 

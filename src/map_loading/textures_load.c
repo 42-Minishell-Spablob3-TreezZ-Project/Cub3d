@@ -6,7 +6,7 @@
 /*   By: grui-ant <grui-ant@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 14:24:18 by grui-ant          #+#    #+#             */
-/*   Updated: 2026/06/18 17:18:25 by grui-ant         ###   ########.fr       */
+/*   Updated: 2026/06/25 13:45:03 by grui-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	load_tex(t_map *map, t_tex *tex, char *path)
 
 void	load_textures(t_map *map)
 {
-	load_tex(map, &map->north_tex, map->textures.NO);
-	load_tex(map, &map->south_tex, map->textures.SO);
-	load_tex(map, &map->west_tex, map->textures.WE);
-	load_tex(map, &map->east_tex, map->textures.EA);
+	load_tex(map, &map->north_tex, map->textures.no);
+	load_tex(map, &map->south_tex, map->textures.so);
+	load_tex(map, &map->west_tex, map->textures.we);
+	load_tex(map, &map->east_tex, map->textures.ea);
 }
