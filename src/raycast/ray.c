@@ -6,7 +6,7 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/02 09:54:40 by joapedro          #+#    #+#             */
-/*   Updated: 2026/06/25 13:54:02 by grui-ant         ###   ########.fr       */
+/*   Updated: 2026/06/25 16:27:56 by grui-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ void	calculate_step_and_side_distance(t_map *map, t_ray *ray)
 	else
 	{
 		ray->step_x = 1;
-		ray->side_dist_x = (ray->map_x + 1.0 - map->player.pos_x) * ray->delta_dist_x;
+		ray->side_dist_x = (ray->map_x + 1.0 - map->player.pos_x) \
+* ray->delta_dist_x;
 	}
 	if (ray->ray_dir_y < 0)
 	{
@@ -45,7 +46,8 @@ void	calculate_step_and_side_distance(t_map *map, t_ray *ray)
 	else
 	{
 		ray->step_y = 1;
-		ray->side_dist_y = (ray->map_y + 1.0 - map->player.pos_y) * ray->delta_dist_y;
+		ray->side_dist_y = (ray->map_y + 1.0 - map->player.pos_y) \
+* ray->delta_dist_y;
 	}
 }
 

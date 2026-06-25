@@ -6,7 +6,7 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/12 15:20:01 by joapedro          #+#    #+#             */
-/*   Updated: 2026/06/18 17:03:37 by grui-ant         ###   ########.fr       */
+/*   Updated: 2026/06/25 16:30:48 by grui-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	set_map_dimensions(t_map *map)
 
 void	flood_fill(char **grid, t_map *map, int y, int x)
 {
-//	char *valid = "1FNSEW";
 	if (x < 0 || y < 0 || x >= map->width || y >= map->height)
 		error_free_exit(FLOOD_FILL, map);
 	if (grid[y][x] == ' ')

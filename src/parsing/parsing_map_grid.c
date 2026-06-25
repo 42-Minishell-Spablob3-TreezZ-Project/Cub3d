@@ -6,7 +6,7 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/12 12:40:58 by joapedro          #+#    #+#             */
-/*   Updated: 2026/06/25 13:48:21 by grui-ant         ###   ########.fr       */
+/*   Updated: 2026/06/25 16:29:22 by grui-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,6 @@ int	parsing_map_grid(t_map *map, int start)
 	map->is_map = 1;
 	result = fill_map_grid_array(map, start);
 	normalize_map(map);
-	//edge_scan(map);
 	set_map_dimensions(map);
 	check_map_chars(map->grid, map);
 	copy = map_copy(map);
