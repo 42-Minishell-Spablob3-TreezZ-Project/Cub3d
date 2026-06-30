@@ -6,7 +6,7 @@
 /*   By: grui-ant <grui-ant@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 14:26:13 by grui-ant          #+#    #+#             */
-/*   Updated: 2026/06/30 13:33:57 by grui-ant         ###   ########.fr       */
+/*   Updated: 2026/06/30 15:33:49 by grui-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,12 @@ typedef struct s_texture
 
 }	t_texture;
 
+typedef struct s_specs
+{
+	int	size;
+	int	color;
+}	t_specs;
+
 typedef struct s_map
 {
 	char		**map_array;
@@ -189,8 +195,8 @@ void	error_free_exit(char *message, t_map *map);
 void	error_free_array_and_struct(char *message, t_map *map, char **array);
 
 //minimap
-void	render_minimap(t_map *map, int size, int color);
-void	draw_square(t_img *img, int x, int y, int size, int color);
+void	render_minimap(t_map *map, t_specs specs);
+void	draw_square(t_img *img, int x, int y, t_specs specs);
 int		rendering_loop(t_map *map);
 
 //expanded minimap

@@ -6,7 +6,7 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 10:25:28 by joapedro          #+#    #+#             */
-/*   Updated: 2026/06/30 15:21:06 by grui-ant         ###   ########.fr       */
+/*   Updated: 2026/06/30 15:41:06 by grui-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,12 @@
 
 void	clear_player_image(t_map *map, int size)
 {
+	t_specs	specs;
+
+	specs.size = size;
+	specs.color = 0x000000;
 	draw_square(&map->data.img, map->player.pos_x * size, \
-map->player.pos_y * size, size, 0x000000);
+map->player.pos_y * size, specs);
 }
 
 void	init_game(t_map *map)
@@ -30,18 +34,20 @@ WIDTH, HEIGHT, "cub3D");
 
 int	rendering_loop(t_map *map)
 {
-	int	size;
+	t_specs	specs;
 
-	size = (check_dims(map) / ((WIDTH / 1000.0) * 2));
+	specs.size = (check_dims(map) / ((WIDTH / 1000.0) * 2));
 	render_world(map);
 	if (map->is_expanded % 2 == 0)
 	{
-		render_minimap(map, size, 0x0000FF);
-		draw_square(&map->data.img, map->player.pos_x * size, \
-map->player.pos_y * size, size, 0x008000);
+		specs.color = 0x0000FF;
+		render_minimap(map, specs);
+		specs.color = 0x008000;
+		draw_square(&map->data.img, map->player.pos_x * specs.size, \
+map->player.pos_y * specs.size, specs);
 	}
 	if (map->is_expanded && map->is_expanded % 2 != 0)
-		expanded_minimap(map, size);
+		expanded_minimap(map, specs.size);
 	player_movement(map);
 	mlx_put_image_to_window(map->data.mlx, map->data.mlx_win, \
 map->data.img.mlx_img, 0, 0);
