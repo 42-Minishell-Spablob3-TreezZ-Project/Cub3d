@@ -6,7 +6,7 @@
 /*   By: grui-ant <grui-ant@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 14:26:13 by grui-ant          #+#    #+#             */
-/*   Updated: 2026/06/25 13:43:20 by grui-ant         ###   ########.fr       */
+/*   Updated: 2026/06/30 13:33:57 by grui-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ typedef struct s_wall
 	int	wall_height;
 	int	draw_start;
 	int	draw_end;
-
 }	t_wall;
 
 typedef struct s_player
@@ -108,6 +107,13 @@ typedef struct s_tex
 	int		size_line;
 	int		endian;
 }	t_tex;
+
+typedef struct s_walltex
+{
+	int		tex_x;
+	double	tex_pos;
+	double	step;
+}	t_walltex;
 
 typedef struct s_texture
 {
