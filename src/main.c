@@ -6,21 +6,11 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 10:25:28 by joapedro          #+#    #+#             */
-/*   Updated: 2026/06/30 15:41:06 by grui-ant         ###   ########.fr       */
+/*   Updated: 2026/06/30 15:50:06 by grui-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	clear_player_image(t_map *map, int size)
-{
-	t_specs	specs;
-
-	specs.size = size;
-	specs.color = 0x000000;
-	draw_square(&map->data.img, map->player.pos_x * size, \
-map->player.pos_y * size, specs);
-}
 
 void	init_game(t_map *map)
 {

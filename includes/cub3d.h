@@ -6,7 +6,7 @@
 /*   By: grui-ant <grui-ant@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 14:26:13 by grui-ant          #+#    #+#             */
-/*   Updated: 2026/06/30 15:33:49 by grui-ant         ###   ########.fr       */
+/*   Updated: 2026/07/01 13:13:32 by grui-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,7 +182,6 @@ int		get_longest_line(t_map *map);
 void	set_map_dimensions(t_map *map);
 void	flood_fill(char **grid, t_map *map, int y, int x);
 void	check_identifier(char *line, t_map *map);
-//void	edge_scan(t_map *map);
 
 //free memory
 void	free_struct(t_map *map);
@@ -221,7 +220,6 @@ void	render_world(t_map *map);
 int		key_press(int key, t_map *map);
 int		key_release(int key, t_map *map);
 void	player_movement(t_map *map);
-//void	clear_player_image(t_map *map, int size);
 
 //render world
 void	render_world(t_map *map);
