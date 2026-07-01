@@ -6,7 +6,7 @@
 /*   By: grui-ant <grui-ant@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 14:26:13 by grui-ant          #+#    #+#             */
-/*   Updated: 2026/07/01 13:13:32 by grui-ant         ###   ########.fr       */
+/*   Updated: 2026/07/01 13:52:00 by grui-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,6 +197,11 @@ void	error_free_array_and_struct(char *message, t_map *map, char **array);
 void	render_minimap(t_map *map, t_specs specs);
 void	draw_square(t_img *img, int x, int y, t_specs specs);
 int		rendering_loop(t_map *map);
+void	draw_player(t_img *img, int x, int y, t_specs specs);
+int		obtain_x(t_map *map);
+int		obtain_y(t_map *map);
+void	render_bg(t_map *map, t_specs specs);
+void	render_highlight_bg(t_map *map, t_specs specs);
 
 //expanded minimap
 int		size_scales(int size);

@@ -6,7 +6,7 @@
 /*   By: grui-ant <grui-ant@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/02 13:08:07 by grui-ant          #+#    #+#             */
-/*   Updated: 2026/06/30 15:38:29 by grui-ant         ###   ########.fr       */
+/*   Updated: 2026/07/01 13:53:58 by grui-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,7 @@ void	expanded_minimap(t_map *map, int size)
 	specs.size = size * 2;
 	specs.color = 0x0000FF;
 	render_minimap(map, specs);
-	specs.color = 0x008000;
-	draw_square(&map->data.img, map->player.pos_x * (size * 2), \
+	draw_player(&map->data.img, map->player.pos_x * (size * 2), \
 map->player.pos_y * (size * 2), specs);
 }
 

@@ -6,7 +6,7 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 10:25:28 by joapedro          #+#    #+#             */
-/*   Updated: 2026/06/30 15:50:06 by grui-ant         ###   ########.fr       */
+/*   Updated: 2026/07/01 13:52:18 by grui-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ int	rendering_loop(t_map *map)
 	{
 		specs.color = 0x0000FF;
 		render_minimap(map, specs);
-		specs.color = 0x008000;
-		draw_square(&map->data.img, map->player.pos_x * specs.size, \
+		draw_player(&map->data.img, map->player.pos_x * specs.size, \
 map->player.pos_y * specs.size, specs);
 	}
 	if (map->is_expanded && map->is_expanded % 2 != 0)
