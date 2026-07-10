@@ -14,7 +14,6 @@
 
 void	load_tex(t_map *map, t_tex *tex, char *path)
 {
-	printf("Loading texture: %s\n", path);
 	tex->img = mlx_xpm_file_to_image(map->data.mlx, path, \
 &tex->width, &tex->height);
 	if (!tex->img)

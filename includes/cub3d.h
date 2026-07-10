@@ -186,7 +186,7 @@ void	check_identifier(char *line, t_map *map);
 //free memory
 void	free_struct(t_map *map);
 void	free_array(char **array);
-int		close_win(t_map *map);
+void	close_win(t_map *map);
 
 // error
 void	error_exit(char *message);

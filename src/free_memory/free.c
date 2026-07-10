@@ -25,7 +25,7 @@ void	free_array(char **array)
 	free(array);
 }
 
-void	free_textures(t_texture *t)
+void	free_text_path(t_texture *t)
 {
 	if (t->no)
 		free(t->no);
@@ -45,14 +45,28 @@ void	free_struct(t_map *map)
 		free_array(map->map_array);
 	if (map->grid)
 		free_array(map->grid);
-	free_textures(&map->textures);
+	free_text_path(&map->textures);
 	free(map);
 }
 
-int	close_win(t_map *map)
+void	destroy_textures_img(t_map *map)
 {
+	if (map->north_tex.img)
+		mlx_destroy_image(map->data.mlx, map->north_tex.img);
+	if (map->south_tex.img)
+		mlx_destroy_image(map->data.mlx, map->south_tex.img);
+	if (map->west_tex.img)
+		mlx_destroy_image(map->data.mlx, map->west_tex.img);
+	if (map->east_tex.img)
+		mlx_destroy_image(map->data.mlx, map->east_tex.img);
+	mlx_destroy_image(map->data.mlx, map->data.img.mlx_img);
+}
+
+void	close_win(t_map *map)
+{
+	destroy_textures_img(map);
 	mlx_destroy_window(map->data.mlx, map->data.mlx_win);
 	mlx_destroy_display(map->data.mlx);
+	free(map->data.mlx);
 	free_struct(map);
-	exit (0);
 }

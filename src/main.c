@@ -68,6 +68,6 @@ int	main(int ac, char **av)
 	mlx_hook(map->data.mlx_win, 17, 0, &close_win, map);
 	mlx_loop_hook(map->data.mlx, rendering_loop, map);
 	mlx_loop(map->data.mlx);
-	free_struct(map);
+	close_win(map);
 	return (0);
 }
