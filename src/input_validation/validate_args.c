@@ -6,7 +6,7 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 10:25:55 by joapedro          #+#    #+#             */
-/*   Updated: 2026/07/14 16:34:38 by grui-ant         ###   ########.fr       */
+/*   Updated: 2026/07/14 16:51:56 by grui-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,23 @@
 //verificar extensao do ficheiro: ".cub";
 //verificar se o ficheiro tem permissoes
 
-void	is_directory(char *file_name)
+void	max_is_directory(char *file_name, t_map *map)
 {
 	if (open(file_name, O_DIRECTORY) == -1)
 		return ;
 	else
 	{
 		free(file_name);
-		error_exit(DIRECTORY);
+		error_free_exit(DIRECTORY, map);
 	}
+}
+
+void	is_directory(char *file_name)
+{
+	if (open(file_name, O_DIRECTORY) == -1)
+		return ;
+	else
+		error_exit(DIRECTORY);
 }
 
 int	check_fd(char *str)

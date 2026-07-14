@@ -6,7 +6,7 @@
 /*   By: grui-ant <grui-ant@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 14:24:18 by grui-ant          #+#    #+#             */
-/*   Updated: 2026/07/14 15:58:43 by grui-ant         ###   ########.fr       */
+/*   Updated: 2026/07/14 17:22:31 by grui-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 void	load_tex(t_map *map, t_tex *tex, char *path)
 {
 	//Check if dir here
+	
 	tex->img = mlx_xpm_file_to_image(map->data.mlx, path, \
 &tex->width, &tex->height);
 	if (!tex->img)
+	//if (!tex->img || (open(tex->img, O_DIRECTORY) == -1))
 	{
 		printf("failed to load texture");
 		return ;
