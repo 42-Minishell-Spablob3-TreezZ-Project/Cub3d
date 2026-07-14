@@ -6,7 +6,7 @@
 /*   By: grui-ant <grui-ant@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/25 16:07:45 by grui-ant          #+#    #+#             */
-/*   Updated: 2026/06/30 13:37:55 by grui-ant         ###   ########.fr       */
+/*   Updated: 2026/07/14 18:03:07 by grui-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,10 @@ void	print_wall(t_map *map, t_tex *tex, t_walltex walltex, int x)
 		walltex.tex_pos += walltex.step;
 		pixel = tex->data + \
 (tex_y * tex->size_line + walltex.tex_x * (tex->bpp / 8));
-		color = *(unsigned int *)pixel;
+		if (pixel)
+			color = *(unsigned int *)pixel;
+		else
+			return ;
 		if (map->ray.side == 1)
 			color = (color >> 1) & 8355711;
 		img_pix_put(&map->data.img, x, y, color);
