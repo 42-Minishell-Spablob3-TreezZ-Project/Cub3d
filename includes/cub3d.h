@@ -6,15 +6,15 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 14:26:13 by grui-ant          #+#    #+#             */
-/*   Updated: 2026/07/14 10:55:52 by joapedro         ###   ########.fr       */
+/*   Updated: 2026/07/14 12:30:04 by joapedro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
-# define WIDTH 1024
-# define HEIGHT 720
-# define SPEED 0.02
+# define WIDTH 1920
+# define HEIGHT 1080
+# define SPEED 0.05
 # define TILE 32
 # define PI 3.14159265358979323846
 # include "../libft/libft.h"
@@ -38,7 +38,7 @@
 # define ESC 65307 //Escape key to close game
 # define LEFT 65361
 # define RIGHT 65363
-# define ROTATE_SPEED 0.01
+# define ROTATE_SPEED 0.04
 
 typedef struct s_img
 {
