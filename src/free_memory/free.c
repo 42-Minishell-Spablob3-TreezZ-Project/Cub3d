@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grui-ant <grui-ant@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 14:23:52 by grui-ant          #+#    #+#             */
-/*   Updated: 2026/06/25 13:44:28 by grui-ant         ###   ########.fr       */
+/*   Updated: 2026/07/14 12:13:58 by joapedro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,5 @@ void	close_win(t_map *map)
 	mlx_destroy_display(map->data.mlx);
 	free(map->data.mlx);
 	free_struct(map);
+	exit(0);
 }

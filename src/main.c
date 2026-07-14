@@ -6,7 +6,7 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 10:25:28 by joapedro          #+#    #+#             */
-/*   Updated: 2026/07/01 13:52:18 by grui-ant         ###   ########.fr       */
+/*   Updated: 2026/07/14 12:03:00 by joapedro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	rendering_loop(t_map *map)
 	t_specs	specs;
 
 	specs.size = (check_dims(map) / ((WIDTH / 1000.0) * 2));
+	player_movement(map);
 	render_world(map);
 	if (map->is_expanded % 2 == 0)
 	{
@@ -37,7 +38,6 @@ map->player.pos_y * specs.size, specs);
 	}
 	if (map->is_expanded && map->is_expanded % 2 != 0)
 		expanded_minimap(map, specs.size);
-	player_movement(map);
 	mlx_put_image_to_window(map->data.mlx, map->data.mlx_win, \
 map->data.img.mlx_img, 0, 0);
 	return (0);
