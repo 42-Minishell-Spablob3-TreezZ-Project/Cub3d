@@ -6,7 +6,7 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 10:25:55 by joapedro          #+#    #+#             */
-/*   Updated: 2026/06/18 17:18:50 by grui-ant         ###   ########.fr       */
+/*   Updated: 2026/07/14 16:34:38 by grui-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,13 @@
 
 void	is_directory(char *file_name)
 {
-	struct stat	sb;
-
-	if (stat(file_name, &sb) == -1)
+	if (open(file_name, O_DIRECTORY) == -1)
 		return ;
-	if (S_ISDIR(sb.st_mode))
+	else
+	{
+		free(file_name);
 		error_exit(DIRECTORY);
+	}
 }
 
 int	check_fd(char *str)

@@ -6,7 +6,7 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 10:58:00 by joapedro          #+#    #+#             */
-/*   Updated: 2026/06/25 13:46:27 by grui-ant         ###   ########.fr       */
+/*   Updated: 2026/07/14 16:33:33 by grui-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	check_file_extension_xpm(char *path, t_map *map)
 	char	*file_extension;
 	int		len;
 
+	file_extension = path;
+	is_directory(file_extension);
 	file_extension = ft_strrchr(path, '/');
 	file_extension++;
 	file_extension = ft_strchr(file_extension, '.');

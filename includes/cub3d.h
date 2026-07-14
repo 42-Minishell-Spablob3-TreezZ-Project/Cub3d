@@ -6,7 +6,7 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 14:26:13 by grui-ant          #+#    #+#             */
-/*   Updated: 2026/07/14 12:30:04 by joapedro         ###   ########.fr       */
+/*   Updated: 2026/07/14 16:16:56 by grui-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,6 +182,7 @@ int		get_longest_line(t_map *map);
 void	set_map_dimensions(t_map *map);
 void	flood_fill(char **grid, t_map *map, int y, int x);
 void	check_identifier(char *line, t_map *map);
+void	is_directory(char *file_name);
 
 //free memory
 void	free_struct(t_map *map);
