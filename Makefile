@@ -5,6 +5,7 @@ RED    = $(shell printf '\033[0;31m')
 RESET  = $(shell printf '\033[0m')
 
 NAME = cub3D
+NAME_BONUS = cub3D_bonus
 
 SRC = $(shell find src -name "*.c")
 OBJS := $(SRC:%.c=%.o)
@@ -21,6 +22,8 @@ MLX_FLAGS = -Lminilibx-linux -lmlx_Linux -L/usr/lib/X11 -lXext -lX11 -lm
 
 all: $(MLX_LIB) $(LIBFT) $(NAME)
 
+bonus : $(MLX_LIB) $(LIBFT) $(NAME_BONUS)
+
 $(LIBFT):
 	@echo "$(YELLOW)[LIBFT] Compiling...$(RESET)"
 	@git submodule update --init --recursive
@@ -35,6 +38,10 @@ $(NAME): $(OBJS)
 	@echo "$(BLUE)[LINKING]$(RESET) cub3D..."
 	@$(CC) $(CFLAGS) $(OBJS) $(MLX_LIB) $(LIBFT) $(MLX_FLAGS) -o $(NAME)
 
+$(NAME_BONUS): $(OBJS)
+	@echo "$(BLUE)[LINKING]$(RESET) cub3D..."
+	@$(CC) $(CFLAGS) $(OBJS) $(MLX_LIB) $(LIBFT) $(MLX_FLAGS) -o $(NAME_BONUS)
+
 %.o: %.c
 	@echo "$(YELLOW)[COMPILING]$(RESET) $<"
 	@$(CC) $(CFLAGS) -c $< -o $@
@@ -48,9 +55,9 @@ clean:
 fclean: clean
 
 	@echo "$(RED)[FCLEAN] executable...$(RESET)"
-	@$(RM) $(NAME)
+	@$(RM) $(NAME) $(NAME_BONUS)
 	@make -C libft/ fclean --silent
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all bonus clean fclean re
