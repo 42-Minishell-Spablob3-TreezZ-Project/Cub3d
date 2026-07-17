@@ -102,7 +102,7 @@ You'll be relegated to using classic **DOS-style controls**. Which means:
 - `W`, `A`, `S`, `D` for moving around;
 - **Left** and **Right** arrow keys for looking around
 
-GIF HERE
+<img src="./media/full.png" alt="full.png" width="530" height="289" class="jop-noMdConv">
 
 Don't forget you've got a **minimap!** You can zoom it up by pressing the `M` key.  
 And that's the gameplay for now. We might add a few things in the future. Or maybe not.
