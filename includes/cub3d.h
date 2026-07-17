@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: grui-ant <grui-ant@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 14:26:13 by grui-ant          #+#    #+#             */
-/*   Updated: 2026/06/30 13:33:57 by grui-ant         ###   ########.fr       */
+/*   Updated: 2026/07/14 18:43:12 by grui-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define CUB3D_H
 # define WIDTH 1920
 # define HEIGHT 1080
-# define SPEED 0.02
+# define SPEED 0.05
 # define TILE 32
 # define PI 3.14159265358979323846
 # include "../libft/libft.h"
@@ -38,7 +38,7 @@
 # define ESC 65307 //Escape key to close game
 # define LEFT 65361
 # define RIGHT 65363
-# define ROTATE_SPEED 0.01
+# define ROTATE_SPEED 0.04
 
 typedef struct s_img
 {
@@ -124,6 +124,12 @@ typedef struct s_texture
 
 }	t_texture;
 
+typedef struct s_specs
+{
+	int	size;
+	int	color;
+}	t_specs;
+
 typedef struct s_map
 {
 	char		**map_array;
@@ -176,12 +182,13 @@ int		get_longest_line(t_map *map);
 void	set_map_dimensions(t_map *map);
 void	flood_fill(char **grid, t_map *map, int y, int x);
 void	check_identifier(char *line, t_map *map);
-//void	edge_scan(t_map *map);
+void	max_is_directory(char *file_name, t_map *map);
+void	is_directory(char *file_name);
 
 //free memory
 void	free_struct(t_map *map);
 void	free_array(char **array);
-int		close_win(t_map *map);
+void	close_win(t_map *map);
 
 // error
 void	error_exit(char *message);
@@ -189,9 +196,14 @@ void	error_free_exit(char *message, t_map *map);
 void	error_free_array_and_struct(char *message, t_map *map, char **array);
 
 //minimap
-void	render_minimap(t_map *map, int size, int color);
-void	draw_square(t_img *img, int x, int y, int size, int color);
+void	render_minimap(t_map *map, t_specs specs);
+void	draw_square(t_img *img, int x, int y, t_specs specs);
 int		rendering_loop(t_map *map);
+void	draw_player(t_img *img, int x, int y, t_specs specs);
+int		obtain_x(t_map *map);
+int		obtain_y(t_map *map);
+void	render_bg(t_map *map, t_specs specs);
+void	render_highlight_bg(t_map *map, t_specs specs);
 
 //expanded minimap
 int		size_scales(int size);
@@ -215,7 +227,6 @@ void	render_world(t_map *map);
 int		key_press(int key, t_map *map);
 int		key_release(int key, t_map *map);
 void	player_movement(t_map *map);
-//void	clear_player_image(t_map *map, int size);
 
 //render world
 void	render_world(t_map *map);

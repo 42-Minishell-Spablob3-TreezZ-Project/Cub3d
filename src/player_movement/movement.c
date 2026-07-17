@@ -6,7 +6,7 @@
 /*   By: joapedro <joapedro@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 15:16:39 by grui-ant          #+#    #+#             */
-/*   Updated: 2026/06/25 14:00:55 by grui-ant         ###   ########.fr       */
+/*   Updated: 2026/07/14 11:52:53 by joapedro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,8 @@ void	player_movement(t_map *map)
 	double	sin_a;
 
 	rotate_player(map);
-	cos_a = cos(map->player.player_angle);
-	sin_a = sin(map->player.player_angle);
+	cos_a = map->player.dir_x;
+	sin_a = map->player.dir_y;
 	move_horizontal(map, &map->player, cos_a, sin_a);
 	move_sideways(map, &map->player, cos_a, sin_a);
 }

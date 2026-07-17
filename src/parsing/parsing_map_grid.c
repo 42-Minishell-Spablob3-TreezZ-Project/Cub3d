@@ -116,7 +116,6 @@ int	parsing_map_grid(t_map *map, int start)
 {
 	int		result;
 	char	**copy;
-	int		i;
 
 	map->is_map = 1;
 	result = fill_map_grid_array(map, start);
@@ -125,12 +124,6 @@ int	parsing_map_grid(t_map *map, int start)
 	check_map_chars(map->grid, map);
 	copy = map_copy(map);
 	flood_fill(copy, map, map->player.pos_y, map->player.pos_x);
-	i = 0;
-	while (copy[i])
-	{
-		printf("%s\n", copy[i]);
-		i++;
-	}
 	free_array(copy);
 	return (result);
 }

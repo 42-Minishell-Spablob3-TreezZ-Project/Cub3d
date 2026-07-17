@@ -6,7 +6,7 @@
 /*   By: grui-ant <grui-ant@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 14:23:04 by grui-ant          #+#    #+#             */
-/*   Updated: 2026/06/25 13:32:53 by grui-ant         ###   ########.fr       */
+/*   Updated: 2026/06/30 15:05:29 by grui-ant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ int	key_release(int key, t_map *map)
 		map->player.left = 0;
 	if (key == D)
 		map->player.right = 0;
-	if (key == M)
-		map->is_expanded = 0;
 	if (key == LEFT)
 		map->player.rot_left = 0;
 	if (key == RIGHT)
