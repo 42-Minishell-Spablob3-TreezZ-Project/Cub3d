@@ -1,187 +1,123 @@
-# cub3D – 42 Project
+*This project has been created as part of the 42 curriculum by **grui-ant** and **joapedro**.*
 
-*This project has been created as part of the 42 curriculum by joapedro and grui-ant.*
+# 🧱 42-Cub3d 🔫
 
-# 🎮 cub3D – 42 Project
+## A simple, Wolfenstein-inspired maze explorer, written in C.
 
-## 📖 Description
+*"How can I find my way out of this maze?"*
 
-cub3D is a graphics project from the 42 curriculum inspired by the classic game **Wolfenstein 3D**.
+<img src="./media/ingame.png" alt="ingame.png" width="530" height="289" class="jop-noMdConv">
 
-The goal of this project is to create a simple first-person 3D game engine using **raycasting** techniques. The project introduces the fundamentals of computer graphics, window management, textures, and real-time rendering.
+## Description
 
-Throughout this project, you will learn how to:
+We have taken upon ourselves to replicate the greats of the golden era of PC gaming.  
+We've made somewhat of a **[Wolfenstein 3D](https://en.wikipedia.org/wiki/Wolfenstein_3D)** clone, but simpler in features, and also <ins>written in C</ins>.
 
-- Create and manage graphical windows
-- Handle keyboard input and user interaction
-- Work with images and textures
-- Implement raycasting algorithms
-- Calculate player movement and rotation
-- Render a 3D environment from a 2D map
-- Manage memory and resources correctly
-- Organize a larger C project
+The main purpose of this project is to give us an insight into <ins>low-level graphics</ins>.  
+By making a **raycaster** from scratch, similar to the one used in Wolfenstein 3D, we got a pretty decent peek into software rendering.
 
-The project uses the **MiniLibX** graphical library provided by 42.
+### Features:
 
----
+- Wolfenstein 3D-inspired graphics, with:
+    - A full, proper <ins>collision system</ins>;
+    - A **minimap**, which you can expand;
+- A custom **raycaster implementation** built from scratch;
+- Classic **DOS Style** controls;
+- Usage of the **[42](https://www.42network.org/)** provided <ins>minilibx Graphics Library</ins>;
+- Partial static linking with our own **Libft C Library**.
 
-# ⚙️ Instructions
+## Instructions
 
-## 🛠️ Compilation
+### Building and Running
 
-Clone the repository and enter the project directory:
+You will need to compile this program yourself, as no binaries are provided.  
+This project was was made with Ubuntu 22.04 as the target platform, so this guide will assume you are on Ubuntu.  
+However, you should be able to install the equivalent packages and build on your distro of choice.
 
-```bash
-cd cub3D
-```
+#### Prequisites:
 
-Compile the project using:
+Install the following <ins>dependencies</ins>:
 
-```bash
-make
-```
+- `sudo apt install clang gcc git libxext-dev libbsd-dev make xorg zlib1g-dev`
 
-The executable will be created:
+**Clone** this repository using **Git**, `cd` into it, and pull all dependencies:
 
-```bash
-./cub3D
-```
+- `git clone https://github.com/42-Minishell-Spablob3-TreezZ-Project/Cub3d.git && cd Cub3d`
 
-Run the game with a map file:
+Once that's done, run **GNU Make** to build the source code into a **executable binary**:
 
-```bash
-./cub3D maps/example.cub
-```
+- `make`
 
-### The project is divided into different modules to keep the code organized:
+`make` will also download and compile the **submodules** required for compilation.  
+The `make clean` and `make fclean` flags are also available to **clean up** the files created during compilation, as well as the binary, from the repository.
 
-- **Parsing**  
-  Responsible for reading and validating map files.
+#### Running the program:
+You can <ins>start the program</ins> by running the following command:
+- `./cub3d <NAME OF MAP>`
 
-- **Rendering**  
-  Handles raycasting calculations and drawing the 3D world.
+You can choose any of the maps provided in `/maps`.
 
-- **Movement**  
-  Manages player movement, rotation, and controls.
+#### Map details:
+A map file needs to abide by the <ins>following guidelines</ins>:
+- **Four textures**, which are indicated by four paths:
+	- `NO`
+	- `SO`
+	- `WE`
+	- `EA`
+		- All of these followed by the path to the texture, which must be in a `.xpm` format.
+- **RGB colour values**, for the <ins>Floor</ins> and the <ins>Ceiling</ins>, represented by an `F` and a `C` respectively;
+- **A single player**, represented by a `N`, `S`, `E`, or a `W` character (the direction the player will face when the game is loaded);
+- A <ins>navigatable arena</ins>, where `0` represents walkable sections, and `1` represents a wall;
+	- This arena must be surrounded by `1`'s in order to be valid. In other words, the arena where the player spawns must be closed off;
+- The map file must have a `.cub` extension.
 
-- **Textures**  
-  Loads and applies wall textures.
-
-- **Utils**  
-  Contains helper functions used throughout the project.
-
----
-
-# 🕹️ Controls
-
-| Key | Action |
-|-----|--------|
-| W | Move forward |
-| S | Move backward |
-| A | Move left |
-| D | Move right |
-| ← | Rotate left |
-| → | Rotate right |
-| ESC | Exit game |
-
----
-
-# 🗺️ Map Format
-
-Maps use the `.cub` extension.
-
-Example:
+**Here's an example of a very simple valid map:**
 
 ```
-NO ./textures/north.xpm
-SO ./textures/south.xpm
-WE ./textures/west.xpm
-EA ./textures/east.xpm
+NO ./textures/path_to_the_north_texture.xpm
+SO ./textures/path_to_the_south_texture.xpm
+WE ./textures/path_to_the_west_texture.xpm
+EA ./textures/path_to_the_east_texture.xpm
 
-F 220,100,0
-C 225,225,225
+F  150,200,150 
+C  200,200,214
 
-111111
-100001
-100N01
-100001
-111111
+111111111
+100000001
+100000001
+100000001
+1000N0001
+100000001
+100000001
+100000001
+111111111
 ```
 
-The map contains:
+With this in mind, you can <ins>create your own maps</ins>, as long as you follow said guidelines.
 
-- Texture paths
-- Floor and ceiling colors
-- A 2D representation of the game world
-- Player starting position and orientation
+### Gameplay
 
----
+You'll be relegated to using classic **DOS-style controls**. Which means:
 
-# 🧠 Concepts Covered
+- `W`, `A`, `S`, `D` for moving around;
+- **Left** and **Right** arrow keys for looking around
 
-Through this project, you will learn:
+GIF HERE
 
-- Raycasting algorithms
-- Trigonometry and vector calculations
-- Computer graphics fundamentals
-- Image manipulation
-- Event handling
-- Keyboard input management
-- Memory allocation and freeing
-- File parsing
-- Error handling
-- Modular C programming
+Don't forget you've got a **minimap!** You can zoom it up by pressing the `M` key.  
+And that's the gameplay for now. We might add a few things in the future. Or maybe not.
 
----
+## Resources
 
-# 🎯 Learning Objectives
+- Wolfenstein 3D's Original Source Code: https://github.com/id-Software/wolf3d
+- Lode's Computer Graphics Tutorial: https://lodev.org/cgtutor/raycasting.html
+- Abdilah CH's Tutorial https://devabdilah.medium.com/3d-ray-casting-game-with-cub3d-7a116376056a
+- The various `man` entries on our systems;
+- The help of our **colleagues**;
+- AI was used as <ins>learning reference</ins>.
 
-By completing cub3D, you should understand:
+## Miscellaneous
 
-- How simple 3D engines work
-- How 2D maps can be transformed into 3D views
-- How rays are calculated and projected
-- How textures are applied to walls
-- How to manage a graphical application
-- How to structure a larger C project
+#### Enjoy a screenshot of this project in its early stages:
 
----
-
-# ⚠️ Notes
-
-- The project must compile with:
-
-```
--Wall
--Wextra
--Werror
-```
-
-- Memory leaks must be avoided.
-- All allocated resources must be properly freed.
-- The program must handle invalid maps gracefully.
-- The project follows the 42 Norm.
-- The MiniLibX library is required.
-- AI was used as learning reference.
-
----
-
-# 📚 Resources
-
-## Raycasting
-
-- Lode's Computer Graphics Tutorial  
-  https://lodev.org/cgtutor/raycasting.html
-
-- Abdilah CH tutorial
-  https://devabdilah.medium.com/3d-ray-casting-game-with-cub3d-7a116376056a
-
-## MiniLibX
-
-- 42 MiniLibX Documentation
-- `man mlx`
-
-## C Documentation
-
-- C Reference  
-  https://en.cppreference.com/w/c
+<img src="./media/early.png" alt="early.png" width="729" height="430" class="jop-noMdConv">
